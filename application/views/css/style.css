@@ -1,0 +1,460 @@
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+--------------------- GENERAL ---------------------------------
+-------------------------------------------------------------*/
+
+:root {
+  --darkColor: rgb(43, 45, 46);
+  --blueColor: #4a608c; /*#3F8EBF*/
+  --greenColor: #3bd952;
+  --redColor: #e34949;
+  --orangeColor: rgb(242, 176, 53);
+  --offWhiteColor: #f2f2f2;
+  --writingColor: rgba(0, 0, 0, 0.7);
+  --darkerWritingColor: rgba(0, 0, 0, 0.8);
+}
+:root {
+  --logoWriting: "Lemonada", cursive;
+  --titleWriting: "Podkova", serif;
+  --generalWriting: "EB Garamond", serif;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+  margin: 0 auto;
+  font-size: 1.6rem;
+  font-family: var(--generalWriting);
+  color: var(--writingColor);
+  text-align: center;
+}
+
+main:not(#home) {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.br {
+  display: block;
+}
+h1 {
+  font-family: var(--logoWriting);
+  font-size: 4rem;
+  text-shadow: 2px 2px 3px black;
+  color: var(--orangeColor);
+}
+h2 {
+  font-family: var(--titleWriting);
+  font-size: 3.5rem;
+  color: var(--darkerWritingColor);
+  text-transform: uppercase;
+  margin: 30px 0;
+}
+h3 {
+  font-family: var(--titleWriting);
+  font-size: 2.5rem;
+  color: var(--orangeColor);
+  padding: 15px 0;
+}
+h4 {
+  color: var(--darkerWritingColor);
+  font-size: 1.8rem;
+  margin: 5px 0;
+  transition: 0.5s;
+}
+h4:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+a {
+  text-decoration: none;
+  color: var(--writingColor);
+}
+img {
+  max-width: 100%;
+}
+button {
+  cursor: pointer;
+  background-color: var(--darkColor);
+  color: white;
+  padding: 10px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px var(--writingColor);
+}
+hr {
+  width: 80%;
+}
+.fas {
+  padding-left: 10px;
+}
+.error {
+  font-weight: bold;
+  margin: 1% 0;
+  line-height: 2;
+  color: var(--redColor);
+}
+.red {
+  border: 1px solid var(--redColor);
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+--------------------- HEADER ---------------------------------
+-------------------------------------------------------------*/
+
+header {
+  text-align: center;
+}
+header img {
+  display: inline-block;
+  width: 6%;
+  margin-left: 10px;
+}
+header h1 {
+  display: inline-block;
+  width: 85%;
+  text-align: right;
+  margin-top: 5px;
+}
+header h1 .fas {
+  padding: 0;
+}
+
+header nav {
+  padding: 15px;
+  background-color: var(--darkColor);
+}
+
+header nav a {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--offWhiteColor);
+}
+
+header nav a:not(:last-child) {
+  padding-right: 30px;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+---------------------- FOOTER ---------------------------------
+-------------------------------------------------------------*/
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+-------------------------- HOME -------------------------------
+-------------------------------------------------------------*/
+
+#home article {
+  background-color: var(--darkColor);
+  color: white;
+  padding: 60px 20px 0;
+}
+#home article:first-child {
+  background-image: url("../images/sunset.jpg");
+  background-position: 50% 40%;
+  height: calc(100vh - 190px);
+}
+#home h2 {
+  font-family: var(--logoWriting);
+  color: white;
+  font-size: 6rem;
+  text-transform: none;
+}
+.thumbnail {
+  font-size: 2.2rem;
+  justify-content: space-around;
+}
+.thumbnail p {
+  padding: 35px;
+  margin: 10px;
+  border: 1px solid white;
+  box-shadow: 1px 1px 3px var(--offWhiteColor);
+  transition: 1s;
+}
+.thumbnail p:hover {
+  transform: scale(1.05);
+}
+#home div {
+  margin: 0 auto;
+  text-align: left;
+  width: 80%;
+  padding: 40px;
+  border-radius: 10px;
+}
+#home article:last-child {
+  padding-bottom: 50px;
+}
+#home article:last-child div {
+  background-color: var(--offWhiteColor);
+  color: var(--darkColor);
+}
+#home hr {
+  margin: 20px auto 30px;
+}
+
+/* ------------------------------------------------------------
+   ------------------------------------------------------------
+   --------------- REGISTRATTION FORM -------------------------
+   ------------------------------------------------------------
+   ------------------------------------------------------------ */
+
+form {
+  margin: 2% 0;
+}
+
+fieldset {
+  width: 80%;
+  margin: 1% auto;
+  padding: 1%;
+  border: 1px solid var(--darkColor);
+  border-radius: 5px;
+  text-align: left;
+}
+
+#connexionForm {
+  width: 30%;
+}
+
+legend {
+  padding: 5px;
+  margin-left: 25px;
+  font-size: 2.5rem;
+  color: var(--darkColor);
+  font-weight: bold;
+}
+
+fieldset li {
+  margin: 1% 0;
+}
+fieldset p {
+  display: inline-block;
+  color: var(--redColor);
+  margin-left: 20px;
+  vertical-align: top;
+}
+label {
+  padding: 1% 0;
+  vertical-align: top;
+}
+
+select,
+input,
+textarea {
+  margin-left: 10px;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1.7rem;
+  color: var(--darkerWritingColor);
+}
+
+.error {
+  font-weight: bold;
+  margin: 1% 0;
+  line-height: 2;
+  color: var(--redColor);
+}
+.red {
+  border: 1px solid var(--redColor);
+}
+.italic {
+  font-size: 1.6rem;
+  font-style: italic;
+  text-align: right;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+--------------------- CALENDAR --------------------------------
+-------------------------------------------------------------*/
+
+#calendar {
+  margin: 0 5%;
+}
+#calendar h2 {
+  font-size: 1.7rem;
+}
+#calendar .fc-button,
+#calendar .fc-icon {
+  line-height: 1;
+  padding: 0.3em;
+  font-size: 0.9em;
+}
+#calendar .fc-day-number:hover {
+  cursor: pointer;
+}
+
+#calendar-left-part,
+#calendar-right-part {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 1%;
+}
+#calendar-left-part {
+  width: 65%;
+  padding: 20px;
+  border-radius: 10px;
+}
+#calendar-right-part {
+  width: 25%;
+}
+#calendar-left-part section,
+#calendar-right-part section {
+  margin: 1% 0;
+}
+#calendar-left-part p {
+  padding: 10px 0 20px;
+}
+.border,
+#waitingTasks,
+#importantTasks {
+  border: 1px solid var(--darkColor);
+  border-radius: 5px;
+}
+.task,
+.importantTask,
+#waitingTasks,
+#importantTasks {
+  padding: 5px;
+}
+#doneTasks .task,
+#failedTasks .task {
+  justify-content: center;
+}
+.notshow {
+  display: none;
+}
+#doneTasks {
+  background-color: var(--greenColor);
+}
+#failedTasks {
+  background-color: var(--redColor);
+}
+#calendarPage form {
+  margin-top: 5%;
+}
+#budget {
+  justify-content: center;
+}
+#budget img {
+  width: 50%;
+}
+#budget strong {
+  font-size: 2.5rem;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+----------------- ARTICLES USER PAGE --------------------------
+-------------------------------------------------------------*/
+
+#articles section {
+  width: 90%;
+}
+#articles section article p span,
+#admin section article p span {
+  font-size: 1.8rem !important;
+  font-family: var(--generalWriting) !important;
+  color: var(--writingColor) !important;
+}
+#articles article,
+#admin article,
+#comments {
+  padding: 10px;
+  text-align: left;
+}
+#articles article p,
+#admin article p {
+  margin: 10px 5px;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+----------------- ARTICLE DETAILS PAGE ------------------------
+-------------------------------------------------------------*/
+#articleDetails {
+  text-align: left;
+}
+#articleContent {
+  text-align: justify;
+  margin: 0 20px;
+}
+#articleDetails .italic:not(#comments .italic) {
+  margin: 25px 0;
+}
+#comments {
+  width: 70%;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+---------------------- ADMIN PAGE -----------------------------
+-------------------------------------------------------------*/
+#admin section {
+  width: 47%;
+}
+#admin section h3 {
+  background-color: var(--darkColor);
+  color: white;
+}
+#admin article {
+  border: 1px solid var(--darkColor);
+  border-top: none;
+}
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+----------- LIST OF USERS  / ARTICLES / CATEGORIES ADMIN -------
+-------------------------------------------------------------*/
+
+#listUsers .fas {
+  cursor: pointer;
+}
+.tableAdmin table,
+.tableAdmin tr {
+  margin: 0 auto;
+  border: 1px solid var(--darkColor);
+}
+.tableAdmin th,
+.tableAdmin td {
+  padding: 10px 20px;
+}
+.tableAdmin th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.tableAdmin thead tr,
+.tableAdmin tbody tr:nth-of-type(even),
+.tableAdmin tbody tr:nth-of-type(even) a {
+  background-color: var(--darkColor);
+  color: white;
+}
+#listUsers .form-user label {
+  vertical-align: middle;
+}
+#listUsers .form-user button,
+#listUsers .form-user select {
+  background-color: white;
+  color: var(--darkerWritingColor);
+  font-size: 1.3rem;
+  padding: 3px;
+}
+#upsertArticle fieldset {
+  width: 100%;
+}

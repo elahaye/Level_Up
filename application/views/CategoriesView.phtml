@@ -1,0 +1,29 @@
+<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+
+<main id='listCategories' class="tableAdmin">
+
+    <h2>Liste des catégories</h2>
+
+    <h3><a href='upsertCategory'> <i class="fas fa-plus-circle"></i> Créer une nouvelle catégorie </a></h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php for ($i = 0; $i < count($this->showCategories); $i++) : ?>
+                <tr>
+                    <td><?= $this->showCategories[$i]['name'] ?></td>
+                    <td>
+                        <a href="upsertCategory&id=<?= $this->showCategories[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
+                        <a class='delete-category' href="deleteCategory&deleteId=<?= $this->showCategories[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            <?php endfor ?>
+        </tbody>
+    </table>
+
+</main>

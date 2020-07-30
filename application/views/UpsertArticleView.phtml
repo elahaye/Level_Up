@@ -1,0 +1,60 @@
+<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+
+<main id='upsertArticle'>
+
+    <?php if (isset($_GET['id'])):?>
+    <h2> Modifer votre article</h2>
+    <?php else: ?>
+    <h2>Ajouter un article</h2>
+    <?php endif ?>
+
+    <form method='POST' action='upsertArticle&editId=<?=$this->articleId?>'>
+
+    <fieldset>
+
+        <ul id="formFields">
+            <li>
+                <label for='titleArticle'>Titre</label>
+                <input type="text" id='titleArticle' name='titleArticle' value='<?= htmlspecialchars($this->title) ?>'>
+            </li>
+            <li>
+                <label for='contentArticle'>Contenu</label>
+                <textarea id='contentArticle' name='contentArticle' rows="50">
+                <?= htmlspecialchars($this->content) ?>
+                </textarea>
+            </li>
+            <li>
+                <label for='categoryArticle'>Catégorie</label>
+                <select id='categoryArticle' name='categoryArticle'>
+                    <?php for ($i = 0; $i < count($this->showCategories); $i ++): ?>
+                        <?php if ($this->showCategories[$i]['name'] == $this->category) 
+                        {
+                            $selected = 'selected';
+                        }
+                        else 
+                        {
+                            $selected = '';
+                        }
+                    ?>
+                    <option value=<?=htmlspecialchars($this->showCategories[$i]['name'])?> <?=$selected?>><?=htmlspecialchars($this->showCategories[$i]['name'])?></option>
+                    <?php endfor ?>
+                </select>
+            </li>
+            <li>
+                <label for="imageArticle">Sélectionner l'image référente de votre article :</label>
+                <input type="file" id="imageArticle" name="imageArticle">
+            </li>
+        </ul>
+    
+    </fieldset>
+
+        <?php if (isset($_GET['id'])):?>
+        <button type="submit" class="submit">Modifer votre article</button>
+        <?php else: ?>
+        <button type="submit" class="submit">Créer un article</button>
+        <button type="reset" class="erase">Effacer les informations</button>
+        <?php endif ?>
+
+    </form>
+
+</main>

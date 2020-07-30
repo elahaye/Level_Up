@@ -1,0 +1,35 @@
+<?php include_once('application/views/HeaderUserView.phtml'); ?>
+
+<main id ='home'>
+
+    <section>
+
+        <article>
+            <h2>Reprenez le contrôle <span class='br'>de votre vie</span></h2>
+        </article>
+
+        <article class='flex-row thumbnail'>
+            <p>Des articles permettant de vous aider à progresser dans votre lutte contre la procrastination</p>
+            <p>Un calendrier intéractif permettant de concrétiser vos objectifs en temps voulu.</p>
+            <p>Un système de récompense afin de vous motiver à continuer vos efforts</p>
+        </article>
+
+        <article>
+            <h3>Derniers articicles publiées par nos auteurs</h3>
+
+            <div>
+            <?php for($i = 0; $i < count($this->showArticles); $i++): ?>
+                <a href="articleDetails&id=<?=$this->showArticles[$i]['id']?>"><h4> <?= htmlspecialchars($this->showArticles[$i]['title'])?> </h4></a>
+                <p class='italic'>Publié le <?=$this->showArticles[$i]['date']?></p>
+            <?php if ($i == 4) exit() ?>
+                <hr>
+            <?php endfor ?>
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+<?php include_once('application/views/FooterView.phtml'); ?>

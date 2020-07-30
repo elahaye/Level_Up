@@ -1,0 +1,86 @@
+<body>
+
+    <?php include_once('application/views/HeaderUserView.phtml') ?>
+
+    <main id="calendarPage">
+
+        <h2> Calendrier </h2>
+
+        <section id='calendar-left-part' class='flex-column'>
+            <article> 
+                <h3>Liste des tâches du jour</h3>
+                <section id='waitingTasks'></section>
+                <section id='doneTasks' class='border'></section>
+                <section id='failedTasks' class='border'></section>
+            </article>
+
+           <article>
+                <h3> Tâches importantes et exceptionnelles futures </h3>
+                <section id='importantTasks'>
+                    <?php if(empty($this->importantTasks)): ?>
+                    <p> Vous n'avez pas de tâches importantes prévues prochainement.</p>
+                    <?php else: ?>
+                        <?php for($i = 0; $i < count($this->importantTasks); $i++): ?>
+                        <article class="importantTask flex-row"> 
+                            <a href="changeStatus&id=<?=$this->importantTasks[$i]['id']?>&status=failed&priority=<?=$this->importantTasks[$i]['priority']?>"><i class="fas fa-times"></i></a>
+                            <div>
+                                <h4> <?=htmlspecialchars($this->importantTasks[$i]['title'])?> </h4>
+                                <p class="notshow"> <?=htmlspecialchars($this->importantTasks[$i]['content'])?> </p>
+                                <ul class="notshow flex-row"> 
+                                    <li> <a href="deleteTask&id=<?=$this->importantTasks[$i]['id']?>"><i class="fas fa-trash-alt"></i></a></li>
+                                    <li data-id="<?=$this->importantTasks[$i]['id']?>"><i class="fas fa-edit"></i></li>
+                                </ul>
+                            </div>
+                            <a href="changeStatus&id=<?=$this->importantTasks[$i]['id']?>&status=done&priority=<?=$this->importantTasks[$i]['priority']?>"><i class="fas fa-check"></i></a>
+                        </article>
+                        <?php endfor ?>
+                    <?php endif ?>
+                </section>                
+            </article>
+
+            <form method="POST" action="calendar" id="calendarForm">
+                <fieldset>
+                    <legend id="legendForm">Nouvelle tâche</legend>
+
+                    <ul id="connexionFields">
+                        <li>
+                            <label for='title'>Titre de la tâche</label>
+                            <input type='text' id='title' name='title' value=<?= htmlspecialchars($this->title) ?>>
+                        </li>
+                        <li>
+                            <label for='content'>Description de la tâche</label>
+                            <textarea name='content' id='content' rows="10" cols="50"><?= htmlspecialchars($this->content) ?></textarea>
+                        </li>
+                        <li>
+                            <label for='priority'>Priorité de la tâche</label>
+                            <select name='priority' id='priority'>
+                                <option value='1'>Quotidienne</option>
+                                <option value='2'>Hebdomadaire</option>
+                                <option value='3'>Important</option>
+                                <option value='4'>Exceptionnelle</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for='date'> Date de réalisation de la tâche</label>
+                            <input type='date' id='date' name='date' value=<?=$this->date?> min=<?=$this->date?> max='31-12-2025'>
+                        </li>
+                </fieldset>
+                <button type='submit' class='submit'> Ajouter </button>
+            </form>
+            
+        </section>
+
+        <section id='calendar-right-part' class='flex-column'>
+
+            <div id='calendar'></div>
+
+            <div id='budget' class='flex-row'>
+                <img src="application/views/images/wallet.png">
+                <strong> <?=$this->budget?> € </strong>
+            </div>
+            
+        </section>
+
+    </main>
+
+</body>

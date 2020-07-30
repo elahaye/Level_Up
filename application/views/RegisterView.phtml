@@ -1,0 +1,153 @@
+<body>
+
+    <?php include_once('application/views/HeaderUserView.phtml') ?>
+
+    <main>
+
+        <h2>Inscription</h2>
+
+        <form id="register" method="POST" action="register">
+            
+            <?php if ( !empty($this->errors) ) :?>
+            <?php foreach( $this->errors as $error ): ?>
+                
+                <p class="error"> <?= $error; ?> </p>
+            
+            <?php endforeach; ?>
+            <?php endif; ?>
+            
+            <fieldset>
+
+                <legend> Identité du nouvel utilisateur </legend>
+
+                <ul id="formFields">
+                    <li>
+                        <label for="firstname"> Votre prénom : </label>
+                        <input type="text" name="firstname" id="firstname" value="<?= htmlspecialchars($this->firstname) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="lastname"> Votre nom : </label>
+                        <input type="text" name="lastname" id="lastname" value="<?= htmlspecialchars($this->lastname) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="nickname"> Votre pseudonyme : </label>
+                        <input type="text" name="nickname" id="nickname" value="<?= htmlspecialchars($this->nickname) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="phone"> Votre numéro de téléphone : </label>
+                        <input type="tel" name="phone" id="phone" value="<?= htmlspecialchars($this->phone) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="dateOfBirth"> Votre date de naissance : </label>
+                        <select name="birthDay" id="birthDay">
+                            <?php for ($i = 1; $i <= 31; $i++) {
+
+                                    if ($i == $this->birthDay) 
+                                    {
+                                        $this->selected = 'selected';
+                                    }
+
+                                    if ($i >= 1 && $i <= 9) 
+                                    {
+                                        echo "<option value='0". $i. "'".$this->selected.">0". $i. "</option>";
+                                    }
+                                    else 
+                                    {
+                                        echo "<option value='". $i. "'".$this->selected.">". $i. "</option>";
+                                    }
+
+                                    $this->selected = '';
+                            } ?>
+                        </select>
+                        <select name="birthMonth" id="birthMonth">
+
+                            <?php for ($i = 1; $i <= 12; $i++) {
+
+                                    if ($i == $this->birthMonth) 
+                                    {
+                                        $this->selected = 'selected';
+                                    }
+
+                                    if ($i >= 1 && $i <= 9) 
+                                    {
+                                        echo "<option value='0". $i. "'".$this->selected.">0". $i. "</option>";
+                                    }
+                                    else 
+                                    {
+                                        echo "<option value='". $i. "'".$this->selected.">". $i. "</option>";
+                                    }
+
+                                    $this->selected = '';
+                            } ?>
+                        </select>
+                        <select name="birthYear" id="birthYear">
+                            <?php for ($i = 1900; $i <= 2020; $i++) {
+
+                                    if ($i == $this->birthYear) 
+                                    {
+                                        $this->selected = 'selected';
+                                    }
+                                    echo "<option value='". $i."' ".$this->selected.">". $i."</option>";
+
+                                    $this->selected = '';
+                            } ?>
+                        </select>
+                    </li>
+
+                    <li>
+                        <label for="address"> Adresse : </label>
+                        <textarea name="address" id="address" rows="7" cols="30"><?= htmlspecialchars($this->address) ?></textarea>
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="postCode"> Code Postal : </label>
+                        <input type="text" name="postCode" id="postCode" value="<?= htmlspecialchars($this->postCode) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="city"> Ville :</label>
+                        <input type="text" name="city" id="city" value="<?= htmlspecialchars($this->city) ?>">
+                        <p></p>
+                    </li>
+
+                </ul>
+
+            </fieldset>
+
+            <fieldset class="flexColumn">
+                
+                <legend> Votre authentification </legend>
+
+                <ul id="connexionFields">
+                    <li>
+                        <label for="mail"> Votre mail : </label>
+                        <input type="email" name="mail" id="mail" value=" <?= htmlspecialchars($this->mail) ?>">
+                        <p></p>
+                    </li>
+
+                    <li>
+                        <label for="password"> Votre mot de passe : </label>
+                        <input type="password" name="password" id="password" value="<?= htmlspecialchars($this->password) ?>">
+                        <p></p>
+                    </li>
+                </ul>
+
+            </fieldset>
+
+            <button type="submit" class="submit">Créer un compte</button>
+            <button type="reset" class="erase">Effacer les informations</button>
+
+        </form>
+
+    </main>
+</body>

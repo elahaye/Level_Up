@@ -1,0 +1,19 @@
+<header>
+
+    <img src="application/views/images/logo.png" alt="Logo de LifeControl">
+    <h1> Upgrade <i class="fas fa-level-up-alt"></i> <span class="br">Your Life</span></h1>
+
+    <nav>
+        <a href='home'> Retour sur le site </a>
+        <a href='admin'> Accueil </a>
+        <?php if ($_SESSION['user']['status'] == 'admin') : ?>
+            <a href='listUsers'> Gérer les utilisateurs </a>
+            <a href='listArticles'> Gérer les articles </a>
+            <a href='listCategories'> Gérer les catégories </a>
+        <?php else : ?>
+            <a href='listArticles'> Gérer vos articles </a>
+        <?php endif ?>
+        <a href='logout'> Déconnexion </a>
+    </nav>
+
+</header>
