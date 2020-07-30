@@ -6,12 +6,17 @@
 
         <section>
 
-            <h2> <?= htmlspecialchars($this->showArticleDetails['title'])?> </h2>
-            <article id='articleContent'><?= $this->showArticleDetails['content']?></article>
-            
-            <p class='italic'> Publié 
-                    par <?= htmlspecialchars($this->showArticleDetails['author'])?> 
-                    le <?=$this->showArticleDetails['date']?> 
+            <h2> <?= htmlspecialchars($this->showArticleDetails['title']) ?>
+                <?php if ($this->showArticleDetails['category'] != "") : ?>
+                    <small class='italic'>(<?= $this->showArticleDetails['category'] ?>)</small>
+                <?php endif ?>
+            </h2>
+            <img src="application/views/images/<?= $this->showArticleDetails['image'] ?>" alt="<?= $this->showArticleDetails['image'] ?>">
+            <article id='articleContent'><?= $this->showArticleDetails['content'] ?></article>
+
+            <p class='italic'> Publié
+                par <?= htmlspecialchars($this->showArticleDetails['author']) ?>
+                le <?= $this->showArticleDetails['date'] ?>
             </p>
             <hr>
 
@@ -20,21 +25,21 @@
         <section id='comments'>
 
             <h3> Commentaires </h3>
-            
-            <?php for ($i = 0; $i < count($this->showComments); $i++): ?>
-            <article>
-                <h4>Par <?= htmlspecialchars($this->showComments[$i]['author'])?></h4>
-                <p> <?= htmlspecialchars($this->showComments[$i]['content'])?> </p>
-                <p class='italic'> Le <?=$this->showComments[$i]['date']?></p>
-            </article>
-            <hr>
+
+            <?php for ($i = 0; $i < count($this->showComments); $i++) : ?>
+                <article>
+                    <h4>Par <?= htmlspecialchars($this->showComments[$i]['author']) ?></h4>
+                    <p> <?= htmlspecialchars($this->showComments[$i]['content']) ?> </p>
+                    <p class='italic'> Le <?= $this->showComments[$i]['date'] ?></p>
+                </article>
+                <hr>
             <?php endfor ?>
 
         </section>
 
         <section>
 
-            <form action="addComment?articleId=<?=$this->showArticleDetails['id']?>" method="POST">
+            <form action="addComment?articleId=<?= $this->showArticleDetails['id'] ?>" method="POST">
 
                 <fieldset>
                     <legend>Laisser un petit commentaire pour l'auteur !</legend>
@@ -47,7 +52,7 @@
                             <label for="nickname">Pseudo :</label>
                             <input type="text" name="nickname" id="nickname">
                         </li>
-                    </ul>                    
+                    </ul>
                 </fieldset>
 
                 <button type="submit">Publier</button>

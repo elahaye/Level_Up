@@ -83,6 +83,13 @@ class ArticleModel extends Model
         $edit_article->execute(compact('article_id', 'title', 'content', 'category', 'editDate'));
     }
 
+    public function editImageOfArticle(string $image, int $article_id)
+    {
+        $sql = 'UPDATE `articles` SET image = :image WHERE id = :article_id';
+        $edit_image = $this->pdo->prepare($sql);
+        $edit_image->execute(compact('image', 'article_id'));
+    }
+
     /**
      * Delete an article from the database
      * 

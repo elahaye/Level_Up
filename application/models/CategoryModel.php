@@ -17,10 +17,7 @@ class CategoryModel extends Model
 
     /**
      * Display one category by his id
-     * 
      * @param int $category_id
-     * 
-     * @return string
      */
     public function displayOneCategory(string $category_id)
     {

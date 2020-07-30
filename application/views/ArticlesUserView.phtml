@@ -4,21 +4,27 @@
 
     <main id="articles">
 
-    <section>
+        <section>
 
-        <h3> Liste des articles publiés </h3>
+            <h3> Liste des articles publiés </h3>
 
-        <?php for ($i = 0; $i < count($this->showArticles); $i++): ?>
-        <article>
-            <a href="articleDetails&id=<?=$this->showArticles[$i]['id']?>"><h4> <?= htmlspecialchars($this->showArticles[$i]['title'])?> </h4></a>
-            <?= htmlspecialchars($this->showArticles[$i]['content'])?>          
-            <p class='italic'> Publié 
-                    par <?= htmlspecialchars($this->showArticles[$i]['author'])?> 
-                    le <?=$this->showArticles[$i]['date']?> 
-            </p>
-        </article>
-        <hr>
-        <?php endfor ?>
+            <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
+                <article>
+                    <a href="articleDetails&id=<?= $this->showArticles[$i]['id'] ?>">
+                        <h4> <?= htmlspecialchars($this->showArticles[$i]['title']) ?>
+                            <?php if ($this->showArticles[$i]['category'] !== "") : ?>
+                                <small class='italic'>(<?= $this->showArticles[$i]['category'] ?>)</small>
+                            <?php endif ?>
+                        </h4>
+                    </a>
+                    <?= $this->showArticles[$i]['content'] ?>
+                    <p class='italic'> Publié
+                        par <?= htmlspecialchars($this->showArticles[$i]['author']) ?>
+                        le <?= $this->showArticles[$i]['date'] ?>
+                    </p>
+                </article>
+                <hr>
+            <?php endfor ?>
         </section>
 
     </main>

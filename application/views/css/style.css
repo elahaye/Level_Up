@@ -119,6 +119,7 @@ hr {
 
 header {
   text-align: center;
+  background-image: url("../images/marble.jpg");
 }
 header img {
   display: inline-block;
@@ -391,6 +392,11 @@ textarea {
 -------------------------------------------------------------*/
 #articleDetails {
   text-align: left;
+}
+#articleDetails img {
+  max-height: 300px;
+  float: right;
+  margin: 0 0 25px 25px;
 }
 #articleContent {
   text-align: justify;
