@@ -5,6 +5,7 @@
 
 :root {
   --darkColor: rgb(43, 45, 46);
+  --greyColor: rgb(100, 100, 100);
   --blueColor: #4a608c; /*#3F8EBF*/
   --greenColor: #3bd952;
   --redColor: #e34949;
@@ -439,10 +440,13 @@ textarea {
   font-weight: bold;
   text-transform: uppercase;
 }
-.tableAdmin thead tr,
+.tableAdmin thead tr {
+  background-color: var(--darkColor);
+  color: white;
+}
 .tableAdmin tbody tr:nth-of-type(even),
 .tableAdmin tbody tr:nth-of-type(even) a {
-  background-color: var(--darkColor);
+  background-color: var(--greyColor);
   color: white;
 }
 #listUsers .form-user label {
@@ -455,6 +459,7 @@ textarea {
   font-size: 1.3rem;
   padding: 3px;
 }
-#upsertArticle fieldset {
+#upsertArticle fieldset,
+#upsertCategory fieldset {
   width: 100%;
 }

@@ -10,6 +10,7 @@
                 <th> Pseudonyme </th>
                 <th> Mail </th>
                 <th> Status </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +18,8 @@
                 <tr>
                     <td><?= $this->displayAllUsers[$i]['nickname'] ?></td>
                     <td><?= $this->displayAllUsers[$i]['mail'] ?></td>
-                    <td><?= $this->displayAllUsers[$i]['status'] ?>
-                        <i class="fas fa-edit change-status"></i>
+                    <td><?= $this->displayAllUsers[$i]['status'] ?></td>
+                    <td><i class="fas fa-edit change-status"></i>
                         <a href="deleteUser&id=<?= $this->displayAllUsers[$i]['id'] ?>"><i class="fas fa-trash-alt delete-user"></i></a>
                         <form class="form-user notshow" method="POST" action="editStatusUser&id=<?= $this->displayAllUsers[$i]['id'] ?>">
                             <label for='statusUser'>Choisissez le statut de cet utilisateur :</label>
