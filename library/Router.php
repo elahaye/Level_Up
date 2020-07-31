@@ -114,6 +114,12 @@ Router::set('addComment', function () {
     $controller->addComment();
 });
 
+// Contact Page
+Router::set('contact', function () {
+    $controller = new UsersController();
+    $controller->createView('ContactView');
+});
+
 //Admin Page
 Router::set('admin', function () {
     $controller = new AdminController();
