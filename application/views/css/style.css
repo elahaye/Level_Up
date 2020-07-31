@@ -413,9 +413,15 @@ textarea {
 ---------------------------------------------------------------
 ---------------------- ADMIN PAGE -----------------------------
 -------------------------------------------------------------*/
+
+#admin div {
+  align-items: flex-start;
+}
+
 #admin section {
   width: 47%;
 }
+
 #admin section h3 {
   background-color: var(--darkColor);
   color: white;

@@ -2,7 +2,6 @@
 
 class ArticleController extends Controller
 {
-    public $model;
     public $articleId;
     public $title = '';
     public $content = '';
@@ -16,13 +15,16 @@ class ArticleController extends Controller
     public $showArticleDetails;
     public $showCategories;
     public $showComments;
+    public $articleModel;
+    public $userModel;
+    public $commentModel;
 
     public function __construct()
     {
         $this->articleModel = new ArticleModel();
         $this->userModel = new UserModel();
-        $this->commentModel = new CommentModel();
         $this->categoryModel = new CategoryModel();
+        $this->commentModel = new CommentModel();
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_GET['editId'])) {
@@ -105,8 +107,7 @@ class ArticleController extends Controller
             $this->showArticleDetails['category'] = $model['name'];
         }
 
-
-        $query = $this->commentModel->displayAllComments($this->articleId);
+        $query = $this->commentModel->displayCommentsFromArticle($this->articleId);
         $this->showComments = $query->fetchAll();
     }
 
@@ -218,7 +219,7 @@ class ArticleController extends Controller
             } else {
                 move_uploaded_file($tmp_file, $destination . $name_file);
             }
-            $this->articleModel->editImage($name_file, $this->articleId);
+            $this->articleModel->editImageOfArticle($name_file, $this->articleId);
         }
 
         $this->articleModel->editArticle($this->articleId, $this->title, $this->content, $this->category, $this->editDate);

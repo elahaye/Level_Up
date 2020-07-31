@@ -161,3 +161,17 @@ Router::set('deleteCategory', function () {
     $controller = new CategoryController();
     $controller->deleteCategory();
 });
+
+// Comments admin page
+Router::set('listComments', function () {
+    $controller = new CommentController();
+    $controller->createView('CommentsAdminView');
+});
+Router::set('detailsComment', function () {
+    $controller = new CommentController();
+    $controller->createView('CommentDetailsAdminView');
+});
+Router::set('deleteComment', function () {
+    $controller = new CommentController();
+    $controller->deleteComment();
+});
