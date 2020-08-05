@@ -43,13 +43,13 @@ class Router
     }
 }
 
-//Home Page
+// Home Page
 Router::set('home', function () {
     $controller = new HomeController();
     $controller->createView('HomeView');
 });
 
-//Register Page
+// Register Page
 Router::set('register', function () {
     $controller = new RegisterController();
     $controller->createView('RegisterView');
@@ -65,7 +65,7 @@ Router::set('nicknameExists', function () {
     $controller->returnJson($controller->nicknameKey);
 });
 
-//Connexion Page
+// Connexion Page
 Router::set('connexion', function () {
     $controller = new ConnexionController();
     $controller->createView('ConnexionView');
@@ -76,7 +76,7 @@ Router::set('logout', function () {
     $controller = new LogoutController();
 });
 
-//Calendar Page
+// Calendar Page
 Router::set('calendar', function () {
     $controller = new CalendarController();
     $controller->createView('CalendarView');
@@ -100,7 +100,7 @@ Router::set('changeStatus', function () {
     $controller->changeStatus();
 });
 
-//Articles User Page 
+// Articles User Page 
 Router::set('articles', function () {
     $controller = new ArticleController();
     $controller->createView('ArticlesUserView');
@@ -120,13 +120,28 @@ Router::set('contact', function () {
     $controller->createView('ContactView');
 });
 
-//Admin Page
+// Personnal Informations Page
+Router::set('userDetails', function () {
+    $controller = new UsersController();
+    $controller->createView('UserDetailsView');
+});
+Router::set('editUser', function () {
+    $controller = new UsersController();
+    $controller->createView('UpdateUserView');
+});
+Router::set('editPassword', function () {
+    $controller = new UsersController();
+    $controller->createView('UpdatePasswordView');
+});
+
+
+// Admin Page
 Router::set('admin', function () {
     $controller = new AdminController();
     $controller->createView('AdminView');
 });
 
-//Users admin Page
+// Users admin Page
 Router::set('listUsers', function () {
     $controller = new UsersController();
     $controller->createView('UsersView');
@@ -140,7 +155,7 @@ Router::set('deleteUser', function () {
     $controller->deleteUser();
 });
 
-//Articles admin page
+// Articles admin page
 Router::set('listArticles', function () {
     $controller = new ArticleController();
     $controller->createView('ArticlesAdminView');

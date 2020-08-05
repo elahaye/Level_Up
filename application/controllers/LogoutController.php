@@ -6,7 +6,7 @@ class LogoutController extends Controller
     {
         session_destroy();
         // Redirect to the index page
-        Router::redirectTo('home');
+        Router::redirectTo('connexion');
         exit();
     }
 }

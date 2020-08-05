@@ -1,0 +1,20 @@
+<?php include_once('application/views/HeaderUserView.phtml'); ?>
+
+<main id="userDetails">
+
+    <h2>Votre profil</h2>
+
+    <a href="editUser"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre profil</a>
+    <a href="editPassword"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre mot de passe</a>
+
+    <section>
+        <p><span>Nom</span> : <?= $_SESSION['user']['lastname'] ?></p>
+        <p><span>Prénom</span> : <?= $_SESSION['user']['firstname'] ?></p>
+        <p><span>Pseudonyme</span> : <?= $_SESSION['user']['nickname'] ?></p>
+        <p><span>Date de naissance</span> : <?= $_SESSION['user']['dateOfBirth'] ?></p>
+        <p><span>Téléphone</span> : <?= $_SESSION['user']['phone'] ?></p>
+        <p><span>Adresse</span> : <?= $_SESSION['user']['address'] ?> <?= $_SESSION['user']['postcode'] ?> <?= $_SESSION['user']['city'] ?></p>
+        <p><span>Email</span> : <?= $_SESSION['user']['mail'] ?></p>
+    </section>
+
+</main>

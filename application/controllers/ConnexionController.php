@@ -4,7 +4,7 @@ class ConnexionController extends Controller
 {
     /* Initialise the form with blank */
     public $model;
-    public $error;
+    public $errors = [];
     public $mail = '';
     public $password = '';
 
@@ -39,13 +39,13 @@ class ConnexionController extends Controller
                     Router::redirectTo('home');
                     exit();
                 } else {
-                    $this->error = "Votre mot de passe n'est pas bon";
+                    array_push($this->errors, "Votre mot de passe n'est pas bon");
                 }
             } else {
-                $this->error = "Ce mail n'est pas enregistré dans notre base de données";
+                array_push($this->errors, "Ce mail n'est pas enregistré dans notre base de données");
             }
         } else {
-            $this->error = "Vous n'avez pas bien rempli les bons champs, veuillez recommencer";
+            array_push($this->errors, "Vous n'avez pas bien rempli les bons champs, veuillez recommencer");
         }
     }
 }

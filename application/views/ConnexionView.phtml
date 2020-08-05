@@ -8,31 +8,32 @@
 
         <form method="POST" action="connexion">
 
-        <?php if ( !empty($this->errors)) :?>
-        <p class="error"> <?= $this->error ?> </p>
-        <?php endif; ?>
-        
-        <fieldset class="flexColumn" id="connexionForm">
-        
-            <ul class="flexColumn">
-                <li>
-                    <label for="mail"> Votre mail : </label>
-                    <input type="email" name="mail" id="mail" value="<?= htmlspecialchars($this->mail) ?>">
-                </li>
-        
-                <li>
-                    <label for="password"> Votre mot de passe : </label>
-                    <input type="password" name="password" id="password" value="<?= htmlspecialchars($this->password) ?>">
-                </li>
-            </ul>
-            
-        </fieldset>
-        
-        <button type="submit" id="connexion">Connexion</button>
-        
+            <?php if (!empty($this->errors)) : ?>
+                <?php foreach ($this->errors as $error) : ?>
+                    <p class="error"> <?= $error; ?> </p>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <fieldset class="flexColumn" id="connexionForm">
+
+                <ul class="flexColumn">
+                    <li>
+                        <label for="mail"> Votre mail : </label>
+                        <input type="email" name="mail" id="mail" value="<?= htmlspecialchars($this->mail) ?>">
+                    </li>
+
+                    <li>
+                        <label for="password"> Votre mot de passe : </label>
+                        <input type="password" name="password" id="password" value="<?= htmlspecialchars($this->password) ?>">
+                    </li>
+                </ul>
+
+            </fieldset>
+
+            <button type="submit" id="connexion">Connexion</button>
+
         </form>
 
     </main>
 
 </body>
-
