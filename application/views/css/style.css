@@ -499,11 +499,9 @@ textarea {
 #admin div {
   align-items: flex-start;
 }
-
 #admin section {
   width: 47%;
 }
-
 #admin section h3 {
   background-color: var(--darkColor);
   color: white;
@@ -540,7 +538,7 @@ textarea {
 }
 .tableAdmin tbody tr:nth-of-type(even),
 .tableAdmin tbody tr:nth-of-type(even) a {
-  background-color: var(--greyColor);
+  background-color: rgb(233, 178, 75);
   color: white;
 }
 #listUsers .form-user label {
