@@ -6,7 +6,7 @@
 
         <section>
 
-            <h3> Liste des articles publiés </h3>
+            <h2> Liste des articles publiés </h2>
 
             <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
                 <article>
@@ -20,7 +20,7 @@
                     <?= $this->showArticles[$i]['content'] ?>
                     <p class='italic'> Publié
                         par <?= htmlspecialchars($this->showArticles[$i]['author']) ?>
-                        le <?= $this->showArticles[$i]['date'] ?>
+                        le <?= date("d/m/Y", strtotime(htmlspecialchars($this->showArticles[$i]['date']))) ?>
                     </p>
                 </article>
                 <hr>

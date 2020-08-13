@@ -26,15 +26,21 @@ html {
 
 body {
   margin: 0 auto;
+  height: 100vh;
   font-size: 1.6rem;
   font-family: var(--generalWriting);
   color: var(--writingColor);
   text-align: center;
+  background-image: url("../images/marble.jpg");
+  background-size: cover;
 }
 
 main:not(#home) {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+  background-color: white;
+  min-height: calc(100vh - 98px);
+  padding: 20px;
 }
 
 .flex-row {
@@ -53,7 +59,7 @@ main:not(#home) {
 }
 h1 {
   font-family: var(--logoWriting);
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-shadow: 2px 2px 3px black;
   color: var(--orangeColor);
 }
@@ -62,7 +68,7 @@ h2 {
   font-size: 3.5rem;
   color: var(--darkerWritingColor);
   text-transform: uppercase;
-  margin: 30px 0;
+  padding: 30px 0;
 }
 h3 {
   font-family: var(--titleWriting);
@@ -87,7 +93,7 @@ a {
 img {
   max-width: 100%;
 }
-button {
+button:not(#moneyDownButton) {
   cursor: pointer;
   background-color: var(--darkColor);
   color: white;
@@ -119,36 +125,31 @@ hr {
 ---------------------------------------------------------------
 --------------------- HEADER ---------------------------------
 -------------------------------------------------------------*/
-
-header {
-  text-align: center;
-  background-image: url("../images/marble.jpg");
+.headerResponsiveBar {
+  color: white;
 }
-header img {
-  display: inline-block;
-  width: 6%;
-  margin-left: 10px;
-}
-header h1 {
-  display: inline-block;
-  width: 85%;
-  text-align: right;
-  margin-top: 5px;
+header nav.flex-row {
+  padding: 12px 50px;
+  background-color: var(--darkColor);
 }
 header h1 .fas {
   padding: 0;
+  font-size: 2.5rem;
 }
-
-header nav {
-  padding: 15px;
-  background-color: var(--darkColor);
+.imageHeader {
+  width: 15%;
+  text-align: left;
 }
-
+.navBar {
+  display: flex;
+  flex-direction: row;
+}
 header nav a {
   font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
   color: var(--offWhiteColor);
+  line-height: 2;
 }
 
 header nav a:not(:last-child) {
@@ -165,15 +166,18 @@ header nav a:not(:last-child) {
 -------------------------- HOME -------------------------------
 -------------------------------------------------------------*/
 
+#home {
+  background-image: url("../images/marble.jpg");
+  background-size: cover;
+}
 #home article {
-  background-color: var(--darkColor);
-  color: white;
+  color: var(--darkColor);
   padding: 60px 20px 0;
 }
 #home article:first-child {
   background-image: url("../images/sunset.jpg");
   background-position: 50% 40%;
-  height: calc(100vh - 190px);
+  height: 45vh;
 }
 #home h2 {
   font-family: var(--logoWriting);
@@ -187,9 +191,12 @@ header nav a:not(:last-child) {
 }
 .thumbnail p {
   padding: 35px;
-  margin: 10px;
-  border: 1px solid white;
-  box-shadow: 1px 1px 3px var(--offWhiteColor);
+  margin: 15px;
+  color: var(--darkColor);
+  background-color: var(--offWhiteColor);
+  border: 1px solid var(--darkColor);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--darkColor);
   transition: 1s;
 }
 .thumbnail p:hover {
@@ -201,6 +208,8 @@ header nav a:not(:last-child) {
   width: 80%;
   padding: 40px;
   border-radius: 10px;
+  border: 1px solid var(--darkColor);
+  box-shadow: 1px 1px 10px var(--orangeColor);
 }
 #home article:last-child {
   padding-bottom: 50px;
@@ -208,6 +217,10 @@ header nav a:not(:last-child) {
 #home article:last-child div {
   background-color: var(--offWhiteColor);
   color: var(--darkColor);
+}
+#home .fas {
+  font-size: 6rem;
+  margin-top: 10px;
 }
 #home hr {
   margin: 20px auto 30px;
@@ -269,6 +282,11 @@ textarea {
   color: var(--darkerWritingColor);
 }
 
+textarea {
+  width: 400px;
+  height: 200px;
+}
+
 .error {
   font-weight: bold;
   margin: 1% 0;
@@ -282,6 +300,13 @@ textarea {
   font-size: 1.6rem;
   font-style: italic;
   text-align: right;
+  padding-top: 10px;
+}
+.notshow {
+  display: none;
+}
+.show {
+  display: block;
 }
 
 /* ------------------------------------------------------------
@@ -326,7 +351,6 @@ textarea {
 #calendar-left-part p {
   padding: 10px 0 20px;
 }
-.border,
 #waitingTasks,
 #importantTasks {
   border: 1px solid var(--darkColor);
@@ -342,20 +366,23 @@ textarea {
 #failedTasks .task {
   justify-content: center;
 }
-.notshow {
-  display: none;
-}
 #doneTasks {
   background-color: var(--greenColor);
 }
 #failedTasks {
   background-color: var(--redColor);
 }
+.backgroundCalendar {
+  background-color: var(--orangeColor);
+}
 #calendarPage form {
   margin-top: 5%;
 }
 #budget {
   justify-content: center;
+}
+#budget:hover {
+  cursor: pointer;
 }
 #budget img {
   width: 50%;
@@ -364,14 +391,29 @@ textarea {
   font-size: 2.5rem;
 }
 
+#removeMoneyForm {
+  border: 1px solid var(--orangeColor);
+  box-shadow: 2px 2px 5px var(--darkColor);
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: center;
+}
+#removeMoneyForm .fas {
+  font-size: 2.3rem;
+}
+#moneyDown {
+  max-width: 50%;
+}
+#moneyDownButton {
+  border: none;
+  color: var(--darkColor);
+}
+
 /* ------------------------------------------------------------
 ---------------------------------------------------------------
 ----------------- ARTICLES USER PAGE --------------------------
 -------------------------------------------------------------*/
 
-#articles section {
-  width: 90%;
-}
 #articles section article p span,
 #admin section article p span {
   font-size: 1.8rem !important;
@@ -383,6 +425,7 @@ textarea {
 #comments {
   padding: 10px;
   text-align: left;
+  margin: 0 auto;
 }
 #articles article p,
 #admin article p {
@@ -394,7 +437,7 @@ textarea {
 ----------------- ARTICLE DETAILS PAGE ------------------------
 -------------------------------------------------------------*/
 #articleDetails {
-  text-align: left;
+  text-align: justify;
 }
 #articleDetails img {
   max-height: 300px;
@@ -402,14 +445,16 @@ textarea {
   margin: 0 0 25px 25px;
 }
 #articleContent {
-  text-align: justify;
   margin: 0 20px;
 }
 #articleDetails .italic:not(#comments .italic) {
   margin: 25px 0;
 }
 #comments {
-  width: 70%;
+  width: 90%;
+}
+#comments p:fist-of-type {
+  padding-left: 10px;
 }
 
 /* ------------------------------------------------------------
@@ -511,4 +556,186 @@ textarea {
 #upsertArticle fieldset,
 #upsertCategory fieldset {
   width: 100%;
+}
+
+/************************************************************************************
+*************************************************************************************
+******************************* RESPONSIVE ******************************************
+*************************************************************************************
+************************************************************************************/
+
+/*----------------------------------------
+--------------- MENU ---------------------
+-----------------------------------------*/
+
+@media only screen and (max-width: 1601px) {
+  header nav.flex-row {
+    padding: 10px 20px;
+  }
+  header h1,
+  header h1 .fas {
+    font-size: 2.2rem;
+  }
+  header nav a {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .imageHeader {
+    width: 20%;
+  }
+  header h1,
+  header h1 .fas {
+    font-size: 1.9rem;
+  }
+  header nav a {
+    font-size: 1.3rem;
+  }
+}
+@media only screen and (max-width: 910px) {
+  .imageHeader {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  header nav.flex-row {
+    padding: 10px 5px;
+  }
+  .headerResponsiveBar {
+    display: block;
+  }
+  .show {
+    display: none;
+  }
+  .navBar {
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--darkColor);
+    text-align: left;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/*----------------------------------------
+------------ APPLI PAGES -----------------
+-----------------------------------------*/
+
+@media only screen and (max-width: 780px) {
+  body {
+    background-image: none;
+  }
+  button:not(#moneyDownButton) {
+    padding: 5px;
+    font-size: 1.5rem;
+    margin: 1px;
+  }
+  label {
+    display: block;
+  }
+
+  /*----------------------------------------
+  ------------ HOME PAGE -------------------
+  -----------------------------------------*/
+
+  #home h2 {
+    font-size: 4rem;
+  }
+  #home article:nth-child(2) {
+    flex-direction: column;
+    max-width: 415px;
+    margin: 0 auto;
+  }
+
+  /*----------------------------------------
+  ------------ CONTACT PAGE ----------------
+  -----------------------------------------*/
+
+  #contact article .flex-row {
+    flex-direction: column;
+  }
+
+  /*----------------------------------------
+  -------- ARTICLE DETAILS PAGE-------------
+  -----------------------------------------*/
+
+  #articleDetails img {
+    float: none;
+    display: block;
+    margin: 0 auto 30px;
+  }
+  #articleDetails legend {
+    font-size: 1.8rem;
+  }
+  textarea {
+    width: 270px;
+    height: 150px;
+  }
+
+  /*----------------------------------------
+  ------------ CALENDAR PAGE----------------
+  -----------------------------------------*/
+
+  #calendar-left-part,
+  #calendar-right-part {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #calendar-left-part section,
+  #calendar-right-part section {
+    padding: 0;
+  }
+  #calendar-right-part .flex-column {
+    flex-direction: row;
+  }
+  #calendar-left-part fieldset {
+    width: 90%;
+  }
+  #budget img {
+    width: 30%;
+  }
+
+  /*----------------------------------------
+  -------- USER DETAILS PAGE ---------------
+  -----------------------------------------*/
+
+  #userDetails a,
+  #userDetails p {
+    display: block;
+    font-size: 1.8rem;
+    line-height: 1;
+    padding-bottom: 15px;
+  }
+
+  /*----------------------------------------
+  ------------- ADMIN PAGE -----------------
+  -----------------------------------------*/
+
+  #admin .flex-row {
+    flex-direction: column;
+  }
+  #admin section {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .tableAdmin th,
+  .tableAdmin td {
+    padding: 5px 2px;
+  }
+  .tableAdmin th,
+  .tableAdmin td,
+  .tableAdmin .fas {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  textarea {
+    width: 230px;
+    height: 125px;
+  }
 }

@@ -13,6 +13,7 @@ class CalendarController extends Controller
     public $showTasks;
     public $waitingTasks;
     public $doneTasks;
+    public $failedTasks;
     public $budget;
 
 
@@ -27,6 +28,8 @@ class CalendarController extends Controller
         } else if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['taskId'])) // get informations of the wanna be edit task
         {
             $this->getInfoTask();
+        } else if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['moneyDown'])) {
+            $this->moneyDownFromBudget();
         } else if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET['taskId'])) {
             $this->editTask();
         } else if ($_SERVER['REQUEST_METHOD'] == "POST") // complete the form 
@@ -43,6 +46,7 @@ class CalendarController extends Controller
             $this->failedTasks = $this->showTasks;
             $this->showImportantFuturTasks();
             $this->importantTasks = $this->showTasks;
+            $this->changeNotCompletedTasks();
             $this->displayBudget();
         }
     }
@@ -78,7 +82,6 @@ class CalendarController extends Controller
      */
     public function showTasksOfDay(string $date, string $status)
     {
-
         $query = $this->calendarModel->showTasksOfDay($_SESSION['user']['id'], $date, $status);
         $this->showTasks = $query->fetchAll();
     }
@@ -185,6 +188,19 @@ class CalendarController extends Controller
         $task_id = $_GET['id'];
         $priority = $_GET['priority'];
 
+        $this->changeStatusTaskAndBudget($status, $task_id, $priority);
+
+        $model = $this->userModel->loginUser($_SESSION['user']['mail']);
+        $connexion_user = $model->fetch();
+        $_SESSION['user'] = $connexion_user;
+
+        // Redirect to the calendar page
+        Router::redirectTo('calendar');
+        exit();
+    }
+
+    public function changeStatusTaskAndBudget($status, $task_id, $priority)
+    {
         $this->calendarModel->changeStatusTask($status, $task_id);
 
         $this->budget = number_format($this->budget, 2);
@@ -230,6 +246,33 @@ class CalendarController extends Controller
         }
 
         $this->userModel->changeBudget($this->budget, $_SESSION['user']['id']);
+    }
+
+    public function changeNotCompletedTasks()
+    {
+        $query = $this->calendarModel->tasksNotCompleted($this->date, $_SESSION['user']['id']);
+        $notCompletedTasks = $query->fetchAll();
+
+        for ($i = 0; $i < count($notCompletedTasks); $i++) {
+            $this->changeStatusTaskAndBudget('failed', $notCompletedTasks[$i]['id'], $notCompletedTasks[$i]['priority']);
+        }
+    }
+
+    public function moneyDownFromBudget()
+    {
+        $moneyDown = $_POST['moneyDown'];
+        $this->budget = number_format($_SESSION['user']['budget'], 2);
+
+        $this->budget -= $moneyDown;
+
+        if ($this->budget < 0) {
+            $this->budget = 0;
+        }
+        $this->userModel->changeBudget($this->budget, $_SESSION['user']['id']);
+
+        $model = $this->userModel->loginUser($_SESSION['user']['mail']);
+        $connexion_user = $model->fetch();
+        $_SESSION['user'] = $connexion_user;
 
         // Redirect to the calendar page
         Router::redirectTo('calendar');

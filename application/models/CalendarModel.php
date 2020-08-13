@@ -1,6 +1,6 @@
 <?php
 
-class CalendarModel extends Model 
+class CalendarModel extends Model
 {
 
     /**
@@ -44,9 +44,9 @@ class CalendarModel extends Model
      * 
      * @return array
      */
-    public function showImportantFuturTasks(int $user_id) 
+    public function showImportantFuturTasks(int $user_id)
     {
-        $sql = 'SELECT * FROM `tasks` WHERE user_id = :user_id AND status = "waiting" AND priority = "3" OR priority = "4"';
+        $sql = 'SELECT * FROM `tasks` WHERE user_id = :user_id AND status = "waiting" AND (priority = "3" OR priority = "4")';
         $show_important_task = $this->pdo->prepare($sql);
         $show_important_task->execute(['user_id' => $user_id]);
 
@@ -64,7 +64,7 @@ class CalendarModel extends Model
      * 
      * @return void
      */
-    public function addNewTask(string $title, string $content, int $priority, string $date, int $user_id) : void
+    public function addNewTask(string $title, string $content, int $priority, string $date, int $user_id): void
     {
         $sql = 'INSERT INTO `tasks`
                 SET title = :title, content = :content, priority = :priority, status = "waiting", date = :date, user_id = :user_id';
@@ -79,7 +79,7 @@ class CalendarModel extends Model
      * 
      * @return void
      */
-    public function deleteTask(int $task_id) : void
+    public function deleteTask(int $task_id): void
     {
         $delete_task = $this->pdo->prepare('DELETE FROM `tasks` WHERE id = :id');
         $delete_task->execute(['id' => $task_id]);
@@ -96,7 +96,7 @@ class CalendarModel extends Model
      * 
      * @return void
      */
-    public function editTask(int $task_id, string $title, string $content, int $priority, string $date) : void
+    public function editTask(int $task_id, string $title, string $content, int $priority, string $date): void
     {
         $sql = 'UPDATE `tasks` SET title = :title, content = :content, priority = :priority, date = :date WHERE id = :task_id';
         $edit_task = $this->pdo->prepare($sql);
@@ -111,7 +111,7 @@ class CalendarModel extends Model
      * 
      * @return void
      */
-    public function changeStatusTask(string $status, int $task_id) : void
+    public function changeStatusTask(string $status, int $task_id): void
     {
         $status_change = $this->pdo->prepare('UPDATE `tasks` SET status = :status WHERE id = :task_id');
         $status_change->execute(compact('status', 'task_id'));
@@ -121,14 +121,17 @@ class CalendarModel extends Model
      * Change the status of tasks who were not completed before today date in failed
      * 
      * @param string $date
+     * @param int $user_id
      * 
-     * @return void
+     * @return array;
      */
-    public function tasksNotCompleted(string $date) : void
+    public function tasksNotCompleted(string $date, int $user_id)
     {
-        $sql = 'UPDATE `tasks` 
-                SET status = "failed" WHERE date < :date';
+        $sql = 'SELECT * FROM `tasks` 
+                WHERE status = "waiting" AND date < DATE :date AND user_id = :user_id';
         $status_failed = $this->pdo->prepare($sql);
-        $status_failed->execute(['date' => $date]);
+        $status_failed->execute(compact('date', 'user_id'));
+
+        return $status_failed;
     }
 }

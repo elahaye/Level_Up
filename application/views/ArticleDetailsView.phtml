@@ -16,7 +16,7 @@
 
             <p class='italic'> Publié
                 par <?= htmlspecialchars($this->showArticleDetails['author']) ?>
-                le <?= $this->showArticleDetails['date'] ?>
+                le <?= date("d/m/Y", strtotime(htmlspecialchars($this->showArticleDetails['date']))) ?>
             </p>
             <hr>
 
@@ -30,7 +30,7 @@
                 <article>
                     <h4>Par <?= htmlspecialchars($this->showComments[$i]['author']) ?></h4>
                     <p> <?= htmlspecialchars($this->showComments[$i]['content']) ?> </p>
-                    <p class='italic'> Le <?= $this->showComments[$i]['date'] ?></p>
+                    <p class='italic'> Le <?= date("d/m/Y", strtotime(htmlspecialchars($this->showComments[$i]['date']))) ?></p>
                 </article>
                 <hr>
             <?php endfor ?>
@@ -46,16 +46,16 @@
                     <ul>
                         <li>
                             <label for="comment">Nouveau commentaire : </label>
-                            <textarea name="comment" id="comment" rows="10" cols="70" placeholder="Ecrivez un nouveau commentaire !"></textarea>
+                            <textarea name="comment" id="comment" placeholder="Ecrivez un nouveau commentaire !"></textarea>
                         </li>
                         <li>
                             <label for="nickname">Pseudo :</label>
                             <input type="text" name="nickname" id="nickname">
                         </li>
                     </ul>
+                    <button type="submit">Publier</button>
                 </fieldset>
 
-                <button type="submit">Publier</button>
             </form>
 
         </section>

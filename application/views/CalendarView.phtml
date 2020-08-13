@@ -7,35 +7,37 @@
         <h2> Calendrier </h2>
 
         <section id='calendar-left-part' class='flex-column'>
-            <article> 
+            <article>
                 <h3>Liste des tâches du jour</h3>
                 <section id='waitingTasks'></section>
                 <section id='doneTasks' class='border'></section>
                 <section id='failedTasks' class='border'></section>
             </article>
 
-           <article>
+            <article>
                 <h3> Tâches importantes et exceptionnelles futures </h3>
                 <section id='importantTasks'>
-                    <?php if(empty($this->importantTasks)): ?>
-                    <p> Vous n'avez pas de tâches importantes prévues prochainement.</p>
-                    <?php else: ?>
-                        <?php for($i = 0; $i < count($this->importantTasks); $i++): ?>
-                        <article class="importantTask flex-row"> 
-                            <a href="changeStatus&id=<?=$this->importantTasks[$i]['id']?>&status=failed&priority=<?=$this->importantTasks[$i]['priority']?>"><i class="fas fa-times"></i></a>
-                            <div>
-                                <h4> <?=htmlspecialchars($this->importantTasks[$i]['title'])?> </h4>
-                                <p class="notshow"> <?=htmlspecialchars($this->importantTasks[$i]['content'])?> </p>
-                                <ul class="notshow flex-row"> 
-                                    <li> <a href="deleteTask&id=<?=$this->importantTasks[$i]['id']?>"><i class="fas fa-trash-alt"></i></a></li>
-                                    <li data-id="<?=$this->importantTasks[$i]['id']?>"><i class="fas fa-edit"></i></li>
-                                </ul>
-                            </div>
-                            <a href="changeStatus&id=<?=$this->importantTasks[$i]['id']?>&status=done&priority=<?=$this->importantTasks[$i]['priority']?>"><i class="fas fa-check"></i></a>
-                        </article>
+                    <?php if (empty($this->importantTasks)) : ?>
+                        <p> Vous n'avez pas de tâches importantes prévues prochainement.</p>
+                    <?php else : ?>
+                        <?php for ($i = 0; $i < count($this->importantTasks); $i++) : ?>
+                            <article class="importantTask flex-row">
+                                <a href="changeStatus&id=<?= $this->importantTasks[$i]['id'] ?>&status=failed&priority=<?= $this->importantTasks[$i]['priority'] ?>"><i class="fas fa-times"></i></a>
+                                <div>
+                                    <h4> <?= htmlspecialchars($this->importantTasks[$i]['title']) ?>
+                                        (le <?= date("d/m/Y", strtotime(htmlspecialchars($this->importantTasks[$i]['date']))) ?>)
+                                    </h4>
+                                    <p class="notshow"> <?= htmlspecialchars($this->importantTasks[$i]['content']) ?> </p>
+                                    <ul class="notshow flex-row">
+                                        <li> <a href="deleteTask&id=<?= $this->importantTasks[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a></li>
+                                        <li data-id="<?= $this->importantTasks[$i]['id'] ?>"><i class="fas fa-edit"></i></li>
+                                    </ul>
+                                </div>
+                                <a href="changeStatus&id=<?= $this->importantTasks[$i]['id'] ?>&status=done&priority=<?= $this->importantTasks[$i]['priority'] ?>"><i class="fas fa-check"></i></a>
+                            </article>
                         <?php endfor ?>
                     <?php endif ?>
-                </section>                
+                </section>
             </article>
 
             <form method="POST" action="calendar" id="calendarForm">
@@ -49,7 +51,7 @@
                         </li>
                         <li>
                             <label for='content'>Description de la tâche</label>
-                            <textarea name='content' id='content' rows="10" cols="50"><?= htmlspecialchars($this->content) ?></textarea>
+                            <textarea name='content' id='content'><?= htmlspecialchars($this->content) ?></textarea>
                         </li>
                         <li>
                             <label for='priority'>Priorité de la tâche</label>
@@ -62,12 +64,12 @@
                         </li>
                         <li>
                             <label for='date'> Date de réalisation de la tâche</label>
-                            <input type='date' id='date' name='date' value=<?=$this->date?> min=<?=$this->date?> max='31-12-2025'>
+                            <input type='date' id='date' name='date' value=<?= $this->date ?> min=<?= $this->date ?> max='31-12-2025'>
                         </li>
                 </fieldset>
                 <button type='submit' class='submit'> Ajouter </button>
             </form>
-            
+
         </section>
 
         <section id='calendar-right-part' class='flex-column'>
@@ -76,9 +78,15 @@
 
             <div id='budget' class='flex-row'>
                 <img src="application/views/images/wallet.png">
-                <strong> <?=$this->budget?> € </strong>
+                <strong> <?= $this->budget ?> € </strong>
             </div>
-            
+
+            <form method="POST" action="calendar" id="removeMoneyForm" class="flex-row notshow">
+                <i class="fas fa-minus"></i>
+                <input type="number" step=0.01 id="moneyDown" name="moneyDown">€
+                <button id="moneyDownButton"><i class="fas fa-cart-arrow-down"></i></button>
+            </form>
+
         </section>
 
     </main>
