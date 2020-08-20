@@ -23,6 +23,11 @@ class CommentController extends Controller
         }
     }
 
+    /**
+     * Display the number of articles and comments published
+     *
+     * @return void
+     */
     public function displayArticlesAndNumberOfComments()
     {
         $query = $this->articleModel->displayArticlesFromAuthor($_SESSION['user']['id']);
@@ -35,6 +40,11 @@ class CommentController extends Controller
         }
     }
 
+    /**
+     * Display comments of the selected article
+     *
+     * @return void
+     */
     public function displayCommentsFromArticle()
     {
         $this->article = $_GET['id'];
@@ -46,6 +56,11 @@ class CommentController extends Controller
         $this->allComments = $query->fetchAll();
     }
 
+    /**
+     * Delete a comment of the selected article
+     *
+     * @return void
+     */
     public function deleteComment()
     {
         $this->comment = $_GET['deleteId'];

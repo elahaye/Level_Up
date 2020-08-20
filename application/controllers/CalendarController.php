@@ -77,7 +77,6 @@ class CalendarController extends Controller
      * 
      * @param string $date
      * @param string $status
-     * 
      * @return array
      */
     public function showTasksOfDay(string $date, string $status)
@@ -199,7 +198,15 @@ class CalendarController extends Controller
         exit();
     }
 
-    public function changeStatusTaskAndBudget($status, $task_id, $priority)
+    /**
+     * Change the status of a task and remove or add money in the budget in result
+     *
+     * @param string $status
+     * @param int $task_id
+     * @param int $priority
+     * @return void
+     */
+    public function changeStatusTaskAndBudget(string $status, int $task_id, int $priority)
     {
         $this->calendarModel->changeStatusTask($status, $task_id);
 
@@ -248,6 +255,11 @@ class CalendarController extends Controller
         $this->userModel->changeBudget($this->budget, $_SESSION['user']['id']);
     }
 
+    /**
+     * Change the status of a task in "failed" if it's not completed by the end of its date and money are remove from the budget in result
+     *
+     * @return void
+     */
     public function changeNotCompletedTasks()
     {
         $query = $this->calendarModel->tasksNotCompleted($this->date, $_SESSION['user']['id']);
@@ -258,6 +270,11 @@ class CalendarController extends Controller
         }
     }
 
+    /**
+     * Remove the amount selected by the user from the budget
+     *
+     * @return void
+     */
     public function moneyDownFromBudget()
     {
         $moneyDown = $_POST['moneyDown'];

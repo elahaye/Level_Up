@@ -49,17 +49,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Integration of the calendar and interaction
   var calendarEl = document.getElementById("calendar");
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: ["dayGrid", "interaction"],
-    locale: "fr",
-    height: "auto",
-    initialView: "dayGridMonth",
-    selectable: true,
-    dateClick: function (info) {
-      changeDate(info.dateStr); // pickedUp Date
-    },
-  });
-  calendar.render();
+  if (calendarEl) {
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: ["dayGrid", "interaction"],
+      locale: "fr",
+      height: "auto",
+      initialView: "dayGridMonth",
+      selectable: true,
+      dateClick: function (info) {
+        changeDate(info.dateStr); // pickedUp Date
+      },
+    });
+    calendar.render();
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   // FUNCTIONS                                                                           //
@@ -110,93 +112,95 @@ document.addEventListener("DOMContentLoaded", function () {
         var doneTasks = JSON.parse(this.response).doneTasks;
         var failedTasks = JSON.parse(this.response).failedTasks;
 
-        waitingSection.innerHTML = "";
-        doneSection.innerHTML = "";
-        failedSection.innerHTML = "";
+        if (waitingSection) {
+          waitingSection.innerHTML = "";
+          doneSection.innerHTML = "";
+          failedSection.innerHTML = "";
 
-        if (waitingTasks.length == 0) {
-          waitingSection.innerHTML +=
-            "<p> Vous n'avez rien de prévu pour ce jour.</p>";
-        } else {
-          for (let i = 0; i < waitingTasks.length; i++) {
+          if (waitingTasks.length == 0) {
             waitingSection.innerHTML +=
-              '<article class="task flex-row">' +
-              '<a href="changeStatus&id=' +
-              waitingTasks[i].id +
-              "&status=failed&priority=" +
-              waitingTasks[i].priority +
-              '"><i class="fas fa-times"></i></a>' +
-              "<div>" +
-              "<h4>" +
-              waitingTasks[i].title +
-              "</h4>" +
-              '<p class="notshow">' +
-              waitingTasks[i].content +
-              "</p>" +
-              '<ul class="notshow flex-row">' +
-              '<li> <a href="deleteTask&id=' +
-              waitingTasks[i].id +
-              '"><i class="fas fa-trash-alt"></i></a></li>' +
-              '<li data-id="' +
-              waitingTasks[i].id +
-              '"><i class="fas fa-edit"></i></li>' +
-              "</ul>" +
-              "</div>" +
-              '<a href="changeStatus&id=' +
-              waitingTasks[i].id +
-              "&status=done&priority=" +
-              waitingTasks[i].priority +
-              '"><i class="fas fa-check"></i></a>' +
-              "</article>";
+              "<p> Vous n'avez rien de prévu pour ce jour.</p>";
+          } else {
+            for (let i = 0; i < waitingTasks.length; i++) {
+              waitingSection.innerHTML +=
+                '<article class="task flex-row">' +
+                '<a href="changeStatus&id=' +
+                waitingTasks[i].id +
+                "&status=failed&priority=" +
+                waitingTasks[i].priority +
+                '"><i class="fas fa-times"></i></a>' +
+                "<div>" +
+                "<h4>" +
+                waitingTasks[i].title +
+                "</h4>" +
+                '<p class="notshow">' +
+                waitingTasks[i].content +
+                "</p>" +
+                '<ul class="notshow flex-row">' +
+                '<li> <a href="deleteTask&id=' +
+                waitingTasks[i].id +
+                '"><i class="fas fa-trash-alt"></i></a></li>' +
+                '<li data-id="' +
+                waitingTasks[i].id +
+                '"><i class="fas fa-edit"></i></li>' +
+                "</ul>" +
+                "</div>" +
+                '<a href="changeStatus&id=' +
+                waitingTasks[i].id +
+                "&status=done&priority=" +
+                waitingTasks[i].priority +
+                '"><i class="fas fa-check"></i></a>' +
+                "</article>";
+            }
           }
-        }
 
-        if (doneTasks.length !== 0) {
-          doneSection.classList.add("border");
-          for (let i = 0; i < doneTasks.length; i++) {
-            doneSection.innerHTML +=
-              '<article class="task flex-row">' +
-              "<div>" +
-              "<h4>" +
-              doneTasks[i].title +
-              "</h4>" +
-              '<p class="notshow">' +
-              doneTasks[i].content +
-              "</p>" +
-              '<ul class="notshow flex-row"></ul>' +
-              "</div>" +
-              "</article>";
+          if (doneTasks.length !== 0) {
+            doneSection.classList.add("border");
+            for (let i = 0; i < doneTasks.length; i++) {
+              doneSection.innerHTML +=
+                '<article class="task flex-row">' +
+                "<div>" +
+                "<h4>" +
+                doneTasks[i].title +
+                "</h4>" +
+                '<p class="notshow">' +
+                doneTasks[i].content +
+                "</p>" +
+                '<ul class="notshow flex-row"></ul>' +
+                "</div>" +
+                "</article>";
+            }
+          } else {
+            doneSection.classList.remove("border");
           }
-        } else {
-          doneSection.classList.remove("border");
-        }
-        if (failedTasks.length !== 0) {
-          failedSection.classList.add("border");
-          for (let i = 0; i < failedTasks.length; i++) {
-            failedSection.innerHTML +=
-              '<article class="task flex-row">' +
-              "<div>" +
-              "<h4>" +
-              failedTasks[i].title +
-              "</h4>" +
-              '<p class="notshow">' +
-              failedTasks[i].content +
-              "</p>" +
-              '<ul class="notshow flex-row"></ul>' +
-              "</div>" +
-              "</article>";
+          if (failedTasks.length !== 0) {
+            failedSection.classList.add("border");
+            for (let i = 0; i < failedTasks.length; i++) {
+              failedSection.innerHTML +=
+                '<article class="task flex-row">' +
+                "<div>" +
+                "<h4>" +
+                failedTasks[i].title +
+                "</h4>" +
+                '<p class="notshow">' +
+                failedTasks[i].content +
+                "</p>" +
+                '<ul class="notshow flex-row"></ul>' +
+                "</div>" +
+                "</article>";
+            }
+          } else {
+            failedSection.classList.remove("border");
           }
-        } else {
-          failedSection.classList.remove("border");
+
+          var task = document.querySelectorAll(".task h4");
+          var content = document.querySelectorAll(".task p");
+          var options = document.querySelectorAll(".task ul");
+          var editButton = document.querySelectorAll(".task li:last-of-type");
+
+          listenerTask(task, content, options);
+          listenerEdit(editButton);
         }
-
-        var task = document.querySelectorAll(".task h4");
-        var content = document.querySelectorAll(".task p");
-        var options = document.querySelectorAll(".task ul");
-        var editButton = document.querySelectorAll(".task li:last-of-type");
-
-        listenerTask(task, content, options);
-        listenerEdit(editButton);
       }
     };
 
@@ -240,7 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
   listenerTask(importantTask, importantContent, importantOptions);
   listenerEdit(importantEditButton);
 
-  budgetSection.addEventListener("click", function () {
-    displayOnClick(removeMoneyForm);
-  });
+  if (budgetSection) {
+    budgetSection.addEventListener("click", function () {
+      displayOnClick(removeMoneyForm);
+    });
+  }
 });

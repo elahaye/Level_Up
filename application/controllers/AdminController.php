@@ -5,9 +5,9 @@ class AdminController extends Controller
     public $articleModel;
     public $commentModel;
     public $userModel;
-    public $showArticles;
-    public $showAllComments;
-    public $showCommentsFromAuthor;
+    public $showArticles = [];
+    public $showAllComments = [];
+    public $showCommentsFromAuthor = [];
 
 
     public function __construct()

@@ -83,6 +83,13 @@ class ArticleModel extends Model
         $edit_article->execute(compact('article_id', 'title', 'content', 'category', 'editDate'));
     }
 
+    /**
+     * Edit the image of an article
+     *
+     * @param string $image
+     * @param integer $article_id
+     * @return void
+     */
     public function editImageOfArticle(string $image, int $article_id)
     {
         $sql = 'UPDATE `articles` SET image = :image WHERE id = :article_id';

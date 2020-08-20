@@ -35,6 +35,11 @@ class CategoryController extends Controller
         $this->showCategories = $query->fetchAll();
     }
 
+    /**
+     * Add a category
+     *
+     * @return void
+     */
     public function addCategory()
     {
         $this->name = $_POST['nameCategory'];
@@ -59,6 +64,11 @@ class CategoryController extends Controller
         $this->name = $editCategory['name'];
     }
 
+    /**
+     * Edit a category
+     *
+     * @return void
+     */
     public function editCategory()
     {
         $this->categoryId = $_GET['editId'];

@@ -28,6 +28,12 @@ class CategoryModel extends Model
         return $display_category;
     }
 
+    /**
+     * Add a category
+     *
+     * @param string $name
+     * @return void
+     */
     public function addCategory(string $name)
     {
         $sql = 'INSERT INTO `categories` 
@@ -36,6 +42,13 @@ class CategoryModel extends Model
         $add_category->execute(['name' => $name]);
     }
 
+    /**
+     * Edit the selected category
+     *
+     * @param integer $category_id
+     * @param string $name
+     * @return void
+     */
     public function editCategory(int $category_id, string $name)
     {
         $sql = 'UPDATE `categories` SET name = :name WHERE id = :category_id';
@@ -43,6 +56,12 @@ class CategoryModel extends Model
         $edit_category->execute(compact('category_id', 'name'));
     }
 
+    /**
+     * Delete the selected category
+     *
+     * @param integer $category_id
+     * @return void
+     */
     public function deleteCategory(int $category_id): void
     {
         $sql = 'DELETE FROM `categories` WHERE id = :id';

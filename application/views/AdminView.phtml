@@ -8,19 +8,25 @@
         <section>
             <h3> Liste des derniers articles publiés</h3>
 
-            <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
+            <?php if (count($this->showArticles) === 0) : ?>
                 <article>
-                    <h4> <?= htmlspecialchars($this->showArticles[$i]['title']) ?> </h4>
-                    <?= substr($this->showArticles[$i]['content'], 0, 100) ?>
-                    <p class='italic'> Publié
-                        <?php if ($_SESSION['user']['status'] == 'admin') : ?>
-                            par <?= htmlspecialchars($this->showArticles[$i]['author']) ?>
-                        <?php endif ?>
-                        le <?= $this->showArticles[$i]['date'] ?>
-                    </p>
+                    <p> Vous n'avez pas encore d'article. </p>
                 </article>
-                <?php if ($i == 9) exit() ?>
-            <?php endfor ?>
+            <?php else : ?>
+                <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
+                    <article>
+                        <h4> <?= htmlspecialchars($this->showArticles[$i]['title']) ?> </h4>
+                        "<?= strip_tags(substr($this->showArticles[$i]['content'], 0, 400)) ?>..."
+                        <p class='italic'> Publié
+                            <?php if ($_SESSION['user']['status'] == 'admin') : ?>
+                                par <?= htmlspecialchars($this->showArticles[$i]['author']) ?>
+                            <?php endif ?>
+                            le <?= date("d/m/Y", strtotime($this->showArticles[$i]['date'])) ?>
+                        </p>
+                    </article>
+                    <?php if ($i == 9) exit() ?>
+                <?php endfor ?>
+            <?php endif ?>
         </section>
 
         <section>
@@ -30,26 +36,40 @@
                 <?php for ($i = 0; $i < count($this->showAllComments); $i++) : ?>
                     <article>
                         <h4> <?= htmlspecialchars($this->showAllComments[$i]['article_id']) ?> </h4>
-                        <p><?= substr(htmlspecialchars($this->showAllComments[$i]['content']), 0, 100) ?></p>
+                        <?php if (strlen($this->showAllComments[$i]['content']) > 100) : ?>
+                            <p>"<?= substr(htmlspecialchars($this->showAllComments[$i]['content']), 0, 100) ?>..."</p>
+                        <?php else : ?>
+                            <p>"<?= substr(htmlspecialchars($this->showAllComments[$i]['content']), 0, 100) ?>"</p>
+                        <?php endif ?>
                         <p class='italic'> Publié
                             par <?= htmlspecialchars($this->showAllComments[$i]['author']) ?>
-                            le <?= $this->showAllComments[$i]['date'] ?>
+                            le <?= date("d/m/Y", strtotime($this->showAllComments[$i]['date'])) ?>
                         </p>
                     </article>
-                    <?php if ($i == 9) exit() ?>
+                    <?php if ($i == 5) exit() ?>
                 <?php endfor ?>
             <?php else : ?>
-                <?php for ($i = 0; $i < count($this->showCommentsFromAuthor); $i++) : ?>
+                <?php if (count($this->showCommentsFromAuthor) === 0) : ?>
                     <article>
-                        <h4> <?= htmlspecialchars($this->showCommentsFromAuthor[$i]['article_id']) ?> </h4>
-                        <p><?= substr(htmlspecialchars($this->showCommentsFromAuthor[$i]['content']), 0, 100) ?></p>
-                        <p class='italic'> Publié
-                            par <?= htmlspecialchars($this->showCommentsFromAuthor[$i]['author']) ?>
-                            le <?= $this->showCommentsFromAuthor[$i]['date'] ?>
-                        </p>
+                        <p> Vous n'avez pas encore de commentaire. </p>
                     </article>
-                    <?php if ($i == 9) exit() ?>
-                <?php endfor ?>
+                <?php else : ?>
+                    <?php for ($i = 0; $i < count($this->showCommentsFromAuthor); $i++) : ?>
+                        <article>
+                            <h4> <?= htmlspecialchars($this->showCommentsFromAuthor[$i]['article_id']) ?> </h4>
+                            <?php if (strlen($this->showCommentsFromAuthor[$i]['content']) > 100) : ?>
+                                <p>"<?= substr(htmlspecialchars($this->showCommentsFromAuthor[$i]['content']), 0, 100) ?>..."</p>
+                            <?php else : ?>
+                                <p>"<?= substr(htmlspecialchars($this->showCommentsFromAuthor[$i]['content']), 0, 100) ?>"</p>
+                            <?php endif ?>
+                            <p class='italic'> Publié
+                                par <?= htmlspecialchars($this->showCommentsFromAuthor[$i]['author']) ?>
+                                le <?= date("d/m/Y", strtotime($this->showCommentsFromAuthor[$i]['date'])) ?>
+                            </p>
+                        </article>
+                        <?php if ($i == 5) exit() ?>
+                    <?php endfor ?>
+                <?php endif ?>
             <?php endif ?>
         </section>
     </div>

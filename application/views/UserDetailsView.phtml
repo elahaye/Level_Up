@@ -11,7 +11,7 @@
         <p><span>Nom</span> : <?= $_SESSION['user']['lastname'] ?></p>
         <p><span>Prénom</span> : <?= $_SESSION['user']['firstname'] ?></p>
         <p><span>Pseudonyme</span> : <?= $_SESSION['user']['nickname'] ?></p>
-        <p><span>Date de naissance</span> : <?= $_SESSION['user']['dateOfBirth'] ?></p>
+        <p><span>Date de naissance</span> : <?= $this->birthday[2] ?>/<?= $this->birthday[1] ?>/<?= $this->birthday[0] ?></p>
         <p><span>Téléphone</span> : <?= $_SESSION['user']['phone'] ?></p>
         <p><span>Adresse</span> : <?= $_SESSION['user']['address'] ?> <?= $_SESSION['user']['postcode'] ?> <?= $_SESSION['user']['city'] ?></p>
         <p><span>Email</span> : <?= $_SESSION['user']['mail'] ?></p>

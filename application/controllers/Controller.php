@@ -1,14 +1,14 @@
 <?php
 
 class Controller
-{   
+{
     /**
      * Display the view of the page asked 
      * 
      * @param string $viewName
      * @return void
      */
-    public function createView(string $viewName) : void
+    public function createView(string $viewName): void
     {
         // Warning : the directory come from the Router.php 
         include_once('application/views/LayoutView.phtml');

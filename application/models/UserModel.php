@@ -4,7 +4,6 @@ class UserModel extends Model
 {
     /**
      * Display all the users
-     * 
      * @return array
      */
     public function displayAllUsers()
@@ -18,7 +17,6 @@ class UserModel extends Model
      * Display one user by his id
      * 
      * @param int $user_id
-     * 
      * @return string
      */
     public function displayOneUser(string $user_id)
@@ -31,13 +29,13 @@ class UserModel extends Model
     }
 
     /**
-     * Insert a new user in tha database
+     * Insert a new user in the database
      * 
      * @param string $firstname
      * @param string $lastname
      * @param string $nickname
      * @param string $dateOfBirth
-     * @param int $phone
+     * @param string $phone
      * @param string $address
      * @param int $postCode
      * @param string $city
@@ -45,7 +43,7 @@ class UserModel extends Model
      * @param string $password
      * @return void
      */
-    public function addNewUser(string $firstname, string $lastname, string $nickname, string $dateOfBirth, int $phone, string $address, int $postcode, string $city, string $mail, string $password): void
+    public function addNewUser(string $firstname, string $lastname, string $nickname, string $dateOfBirth, string $phone, string $address, int $postcode, string $city, string $mail, string $password): void
     {
         $sql = 'INSERT INTO `users` 
                 SET firstname = :firstname, lastname = :lastname, nickname = :nickname, dateOfBirth = :dateOfBirth, phone = :phone, address = :address, postcode = :postcode, city = :city, mail = :mail, password = :password, budget = "0", status = "user"';
@@ -53,7 +51,22 @@ class UserModel extends Model
         $add_user->execute(compact('firstname', 'lastname', 'nickname', 'dateOfBirth', 'phone', 'address', 'postcode', 'city', 'mail', 'password'));
     }
 
-    public function editUser(string $id, string $firstname, string $lastname, string $nickname, string $dateOfBirth, int $phone, string $address, int $postcode, string $city, string $mail)
+    /**
+     * Update the designated user in the database
+     * 
+     * @param int $id
+     * @param string $firstname
+     * @param string $lastname
+     * @param string $nickname
+     * @param string $dateOfBirth
+     * @param string $phone
+     * @param string $address
+     * @param string $postCode
+     * @param string $city
+     * @param string $mail
+     * @return void
+     */
+    public function editUser(string $id, string $firstname, string $lastname, string $nickname, string $dateOfBirth, string $phone, string $address, int $postcode, string $city, string $mail)
     {
         $sql = 'UPDATE `users` 
         SET firstname = :firstname, lastname = :lastname, nickname = :nickname, dateOfBirth = :dateOfBirth, phone = :phone, address = :address, postcode = :postcode, city = :city, mail = :mail 
@@ -62,6 +75,13 @@ class UserModel extends Model
         $update_user->execute(compact('firstname', 'lastname', 'nickname', 'dateOfBirth', 'phone', 'address', 'postcode', 'city', 'mail', 'id'));
     }
 
+    /**
+     * Edit the password of the designated user
+     *
+     * @param string $id
+     * @param string $password
+     * @return void
+     */
     public function editPassword(string $id, string $password)
     {
         $sql = 'UPDATE `users`
@@ -75,7 +95,6 @@ class UserModel extends Model
      * Delete a user
      * 
      * @param int $user_id
-     * 
      * @return void
      */
     public function deleteUser($user_id): void
@@ -89,7 +108,6 @@ class UserModel extends Model
      * Return all the information of an user from his email (unique for each user)
      * 
      * @param string $mail
-     * 
      * @return array
      */
     public function loginUser($mail)
@@ -143,7 +161,6 @@ class UserModel extends Model
      * 
      * @param float $budget
      * @param int $user_id
-     * 
      * @return void  
      */
     public function changeBudget(float $budget, int $user_id): void
@@ -158,7 +175,6 @@ class UserModel extends Model
      * 
      * @param int $user_id
      * @param string $status
-     * 
      * @return void
      */
     public function changeStatus(int $user_id, string $status): void

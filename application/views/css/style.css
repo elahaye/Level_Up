@@ -77,10 +77,12 @@ h3 {
   padding: 15px 0;
 }
 h4 {
+  font-family: var(--titleWriting);
   color: var(--darkerWritingColor);
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin: 5px 0;
   transition: 0.5s;
+  text-transform: uppercase;
 }
 h4:hover {
   cursor: pointer;
@@ -93,7 +95,7 @@ a {
 img {
   max-width: 100%;
 }
-button:not(#moneyDownButton) {
+button:not(#moneyDownButton):not(.tox-mbtn):not(.tox-tbtn) {
   cursor: pointer;
   background-color: var(--darkColor);
   color: white;
@@ -431,6 +433,9 @@ textarea {
 #admin article p {
   margin: 10px 5px;
 }
+#resumeContent {
+  margin: 20px 0 0 30px;
+}
 
 /* ------------------------------------------------------------
 ---------------------------------------------------------------
@@ -446,6 +451,12 @@ textarea {
 }
 #articleContent {
   margin: 0 20px;
+}
+#articleContent strong {
+  font-weight: bold;
+}
+#articleContent em {
+  font-style: italic;
 }
 #articleDetails .italic:not(#comments .italic) {
   margin: 25px 0;
@@ -510,6 +521,10 @@ textarea {
   border: 1px solid var(--darkColor);
   border-top: none;
 }
+#admin h4 {
+  text-transform: initial;
+  cursor: unset;
+}
 
 /* ------------------------------------------------------------
 ---------------------------------------------------------------
@@ -553,7 +568,7 @@ textarea {
 }
 #upsertArticle fieldset,
 #upsertCategory fieldset {
-  width: 100%;
+  width: 95%;
 }
 
 /************************************************************************************

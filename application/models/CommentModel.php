@@ -2,7 +2,11 @@
 
 class CommentModel extends Model
 {
-
+    /**
+     * Display all comments
+     *
+     * @return void
+     */
     public function displayAllComments()
     {
         $show_comments = $this->pdo->query('SELECT * FROM `comments` ORDER BY date DESC');
@@ -44,6 +48,12 @@ class CommentModel extends Model
         $add_comment->execute(compact('content', 'date', 'author', 'article_id'));
     }
 
+    /**
+     * Deleted the selected comment
+     *
+     * @param integer $comment_id
+     * @return void
+     */
     public function deleteComment(int $comment_id)
     {
         $sql = 'DELETE FROM `comments` WHERE id = :id';

@@ -21,10 +21,15 @@ class UsersController extends Controller
             $this->updatePassword();
         } else {
             $this->displayAllUsers();
-            $this->displayUser();
+            $this->displayDateofBirth();
         }
     }
 
+    /**
+     * Display all the users
+     *
+     * @return void
+     */
     public function displayAllUsers()
     {
         $model = $this->model->displayAllUsers();
@@ -45,11 +50,21 @@ class UsersController extends Controller
         }
     }
 
-    public function displayUser()
+    /**
+     * Change the format of the date to fit in the edit form 
+     *
+     * @return void
+     */
+    public function displayDateofBirth()
     {
         $this->birthday = explode('-', $_SESSION['user']['dateOfBirth']);
     }
 
+    /**
+     * Edit the status of a user (basic, author, admin)
+     *
+     * @return void
+     */
     public function editStatusUser()
     {
         $user_id = $_GET['id'];
@@ -61,6 +76,11 @@ class UsersController extends Controller
         exit();
     }
 
+    /**
+     * Delete a user
+     *
+     * @return void
+     */
     public function deleteUser()
     {
         $user_id = $_GET['id'];
@@ -71,18 +91,33 @@ class UsersController extends Controller
         exit();
     }
 
+    /**
+     * Check if the nickname is already in the database
+     *
+     * @return void
+     */
     public function nicknameExists()
     {
         $key = $_POST['key'];
         $this->nicknameKey = $this->model->nicknameExists($key);
     }
 
+    /**
+     * Check if the mail is already in the database
+     *
+     * @return void
+     */
     public function emailExists()
     {
         $key = $_POST['key'];
         $this->emailKey = $this->model->emailExists($key);
     }
 
+    /**
+     * Edit the selected user
+     *
+     * @return void
+     */
     public function updateUser()
     {
         $this->id = $_SESSION['user']['id'];
@@ -136,6 +171,11 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Edit the password of the selected user
+     *
+     * @return void
+     */
     public function updatePassword()
     {
         $this->id = $_SESSION['user']['id'];

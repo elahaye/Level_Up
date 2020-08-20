@@ -35,12 +35,22 @@ class RegisterController extends Controller
         }
     }
 
+    /**
+     * Check if the nickname is already in the database
+     *
+     * @return void
+     */
     public function nicknameExists()
     {
         $key = $_POST['key'];
         $this->nicknameKey = $this->model->nicknameExists($key);
     }
 
+    /**
+     * Check if the mail is already in the database
+     *
+     * @return void
+     */
     public function emailExists()
     {
         $key = $_POST['key'];

@@ -39,10 +39,10 @@ class ConnexionController extends Controller
                     Router::redirectTo('home');
                     exit();
                 } else {
-                    array_push($this->errors, "Votre mot de passe n'est pas bon");
+                    array_push($this->errors, "Vous n'avez pas bien rempli les bons champs, veuillez recommencer");
                 }
             } else {
-                array_push($this->errors, "Ce mail n'est pas enregistré dans notre base de données");
+                array_push($this->errors, "Vous n'avez pas bien rempli les bons champs, veuillez recommencer");
             }
         } else {
             array_push($this->errors, "Vous n'avez pas bien rempli les bons champs, veuillez recommencer");
