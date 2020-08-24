@@ -8,7 +8,7 @@
 
             <h2> <?= htmlspecialchars($this->showArticleDetails['title']) ?>
                 <?php if ($this->showArticleDetails['category'] != "") : ?>
-                    <small class='italic'>(<?= $this->showArticleDetails['category'] ?>)</small>
+                    <small class='italic'>(<?= htmlspecialchars($this->showArticleDetails['category']) ?>)</small>
                 <?php endif ?>
             </h2>
             <img src="application/views/images/<?= $this->showArticleDetails['image'] ?>" alt="<?= $this->showArticleDetails['image'] ?>">

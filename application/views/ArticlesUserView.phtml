@@ -13,7 +13,7 @@
                     <a href="articleDetails&id=<?= $this->showArticles[$i]['id'] ?>">
                         <h4> <?= htmlspecialchars($this->showArticles[$i]['title']) ?>
                             <?php if ($this->showArticles[$i]['category'] !== "") : ?>
-                                <small class='italic'>(<?= $this->showArticles[$i]['category'] ?>)</small>
+                                <small class='italic'>(<?= htmlspecialchars($this->showArticles[$i]['category']) ?>)</small>
                             <?php endif ?>
                         </h4>
                     </a>

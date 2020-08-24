@@ -71,7 +71,7 @@ class ArticleController extends Controller
                 $this->showArticles[$i]['category'] = $model['name'];
             }
         }
-        if ($_SESSION['user']['status'] === 'author') {
+        if (isset($_SESSION['user']) && $_SESSION['user']['status'] === 'author') {
             $query = $this->articleModel->displayArticlesFromAuthor($_SESSION['user']['id']);
             $this->showOwnArticles = $query->fetchAll();
 

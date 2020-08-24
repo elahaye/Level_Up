@@ -22,10 +22,10 @@
             <?php if ($_SESSION['user']['status'] == 'admin') : ?>
                 <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
                     <tr>
-                        <td><?= $this->showArticles[$i]['title'] ?></td>
-                        <td><?= $this->showArticles[$i]['category'] ?></td>
+                        <td><?= htmlspecialchars($this->showArticles[$i]['title']) ?></td>
+                        <td><?= htmlspecialchars($this->showArticles[$i]['category']) ?></td>
                         <td><?= $this->showArticles[$i]['date'] ?></td>
-                        <td><?= $this->showArticles[$i]['author'] ?></td>
+                        <td><?= htmlspecialchars($this->showArticles[$i]['author']) ?></td>
                         <td>
                             <?php if ($_SESSION['user']['nickname'] == $this->showArticles[$i]['author'] || $_SESSION['user']['id'] == $this->showArticles[$i]['author']) : ?>
                                 <a href="upsertArticle&id=<?= $this->showArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
@@ -37,8 +37,8 @@
             <?php elseif ($_SESSION['user']['status'] == 'author') : ?>
                 <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
                     <tr>
-                        <td><?= $this->showOwnArticles[$i]['title'] ?></td>
-                        <td><?= $this->showOwnArticles[$i]['category'] ?></td>
+                        <td><?= htmlspecialchars($this->showOwnArticles[$i]['title']) ?></td>
+                        <td><?= htmlspecialchars($this->showOwnArticles[$i]['category']) ?></td>
                         <td><?= $this->showOwnArticles[$i]['date'] ?></td>
                         <td>
                             <a href="upsertArticle&id=<?= $this->showOwnArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>

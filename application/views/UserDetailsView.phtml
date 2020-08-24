@@ -8,13 +8,13 @@
     <a href="editPassword"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre mot de passe</a>
 
     <section>
-        <p><span>Nom</span> : <?= $_SESSION['user']['lastname'] ?></p>
-        <p><span>Prénom</span> : <?= $_SESSION['user']['firstname'] ?></p>
-        <p><span>Pseudonyme</span> : <?= $_SESSION['user']['nickname'] ?></p>
+        <p><span>Nom</span> : <?= htmlspecialchars($_SESSION['user']['lastname']) ?></p>
+        <p><span>Prénom</span> : <?= htmlspecialchars($_SESSION['user']['firstname']) ?></p>
+        <p><span>Pseudonyme</span> : <?= htmlspecialchars($_SESSION['user']['nickname']) ?></p>
         <p><span>Date de naissance</span> : <?= $this->birthday[2] ?>/<?= $this->birthday[1] ?>/<?= $this->birthday[0] ?></p>
-        <p><span>Téléphone</span> : <?= $_SESSION['user']['phone'] ?></p>
-        <p><span>Adresse</span> : <?= $_SESSION['user']['address'] ?> <?= $_SESSION['user']['postcode'] ?> <?= $_SESSION['user']['city'] ?></p>
-        <p><span>Email</span> : <?= $_SESSION['user']['mail'] ?></p>
+        <p><span>Téléphone</span> : <?= htmlspecialchars($_SESSION['user']['phone']) ?></p>
+        <p><span>Adresse</span> : <?= htmlspecialchars($_SESSION['user']['address']) ?> <?= htmlspecialchars($_SESSION['user']['postcode']) ?> <?= htmlspecialchars($_SESSION['user']['city']) ?></p>
+        <p><span>Email</span> : <?= htmlspecialchars($_SESSION['user']['mail']) ?></p>
     </section>
 
 </main>

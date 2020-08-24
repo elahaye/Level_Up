@@ -15,7 +15,7 @@
             <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
                 <tr>
                     <td><a href="detailsComment&id=<?= $this->showOwnArticles[$i]['id'] ?>"><?= $this->showOwnArticles[$i]['title'] ?></a></td>
-                    <td><?= $this->showOwnArticles[$i]['comments'] ?></td>
+                    <td><?= htmlspecialchars($this->showOwnArticles[$i]['comments']) ?></td>
                 </tr>
             <?php endfor ?>
         </tbody>

@@ -16,7 +16,7 @@
         <tbody>
             <?php for ($i = 0; $i < count($this->showCategories); $i++) : ?>
                 <tr>
-                    <td><?= $this->showCategories[$i]['name'] ?></td>
+                    <td><?= htmlspecialchars($this->showCategories[$i]['name']) ?></td>
                     <td>
                         <a href="upsertCategory&id=<?= $this->showCategories[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
                         <a class='delete-category' href="deleteCategory&deleteId=<?= $this->showCategories[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
