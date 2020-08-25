@@ -4,7 +4,6 @@
 
 class Router
 {
-
     public static $validRoutes = array();
     public static $url;
 

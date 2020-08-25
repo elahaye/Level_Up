@@ -175,6 +175,7 @@ header nav a:not(:last-child) {
 #home {
   background-image: url("../images/marble.jpg");
   background-size: cover;
+  padding-bottom: 50px;
 }
 #home section {
   color: var(--darkColor);

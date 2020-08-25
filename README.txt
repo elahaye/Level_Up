@@ -4,6 +4,27 @@ Elle a été réalisée dans le cadre de la formation Développeur-Intégrateur 
 J'y ai également ajouté plusieurs contraintes : la création de mon propre framework MVC, une page de CSS généralisée ainsi qu'aucune utilisation de librairie.
 
 
+***********************************
+***********************************
+
+Vous trouverez ci-dessous les identifiants de connexion tests afin de pouvoir vous connecter sous trois status d'utilisateurs différents :
+
+1 - Utilisateur basique : 
+        mail - elise@gmail.com
+        mdp - password
+    
+2 - Auteur :
+        mail - marcus@gmail.com
+        mdp - password
+
+3 - Administrateur :
+        mail - admin@gmail.com
+        mdp - password
+
+***********************************
+***********************************
+
+
 --------------------------- EXPLICATIONS TECHNIQUES ---------------------------------
 
 J'ai donc utilisé pour cette application un framework MVC conçu from scratch. Il y a donc une démarcation entre les intéractions à la base de données (Model), les actions effectuées par l'utilisateur (Controller) et les données à afficher (View).
