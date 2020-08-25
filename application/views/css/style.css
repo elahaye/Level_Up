@@ -662,6 +662,17 @@ textarea {
 /*----------------------------------------
 ------------ APPLI PAGES -----------------
 -----------------------------------------*/
+@media only screen and (max-width: 1150px) {
+  #home article:first-of-type img {
+    max-width: 380px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  #home section:last-child article.flex-row {
+    flex-direction: column;
+  }
+}
 
 @media only screen and (max-width: 780px) {
   body {
@@ -688,6 +699,7 @@ textarea {
     max-width: 415px;
     margin: 0 auto;
   }
+  #home section:last-child 
 
   /*----------------------------------------
   ------------ CONTACT PAGE ----------------
@@ -776,5 +788,8 @@ textarea {
   textarea {
     width: 230px;
     height: 125px;
+  }
+  #home article:first-of-type img {
+    max-width: 2595px;
   }
 }
