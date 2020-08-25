@@ -148,7 +148,6 @@ function loadComplete() {
 
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.response);
         var emailKey = JSON.parse(this.response);
 
         if (emailKey == true) {

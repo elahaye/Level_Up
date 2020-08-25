@@ -1,14 +1,12 @@
-<?php include_once('application/views/HeaderUserView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderUserView.phtml'); ?>
 
-<main id='home'>
-
-    <section>
-
-        <article>
+    <main id='home'>
+        <section>
             <h2>Reprenez le contrôle <span class='br'>de votre vie</span></h2>
-        </article>
+        </section>
 
-        <article class='flex-row thumbnail'>
+        <section class='flex-row thumbnail'>
             <p>Des articles permettant de vous aider à progresser dans votre lutte contre la procrastination
                 <i class="fas fa-chart-line br"></i>
             </p>
@@ -18,26 +16,41 @@
             <p>Un système de récompense afin de vous motiver à continuer vos efforts
                 <i class="fas fa-hand-holding-usd br"></i>
             </p>
-        </article>
+        </section>
 
-        <article>
+        <section>
             <h3>Derniers articles publiés par nos auteurs</h3>
-
-            <div>
-                <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
+            <article>
+                <?php $i = 0 ?>
+                <?php while ($i < 4) : ?>
                     <a href="articleDetails&id=<?= $this->showArticles[$i]['id'] ?>">
                         <h4> <?= htmlspecialchars($this->showArticles[$i]['title']) ?> </h4>
                     </a>
                     <p class='italic'>Publié le <?= date("d/m/Y", strtotime(htmlspecialchars($this->showArticles[$i]['date']))) ?></p>
-                    <?php if ($i == 4) exit() ?>
-                    <hr>
-                <?php endfor ?>
-            </div>
+                    <?php $i++ ?>
+                    <?php if ($i != 4) : ?>
+                        <hr>
+                    <?php endif ?>
+                <?php endwhile ?>
+            </article>
+        </section>
 
-        </article>
-
-    </section>
-
-</main>
-
-<?php include_once('application/views/FooterView.phtml'); ?>
+        <section>
+            <h3>Comment ça marche ?</h3>
+            <article class="flex-row">
+                <img src="application/views/images/tasks.png" alt="Image des tâches du calendrier">
+                <p>Lors de la création d'une tâche, vous avez la possibilité de la valider si vous l'avez complété ou l'invalider si vous avez échoué (vous gagnerez ou perdrez une certaine somme d'argent en conséquence). Vous pouvez également modifier la tâche ou tout simplement la supprimer sans conséquence.</p>
+            </article>
+            <hr>
+            <article class="flex-row">
+                <p>Lorsque vous aurez cumulé assez d'argent grâce à la réalisation de vos tâches, vous aurez la possibilité de le dépenser dans l'achat de votre choix. Vous n'aurez plus qu'à déduire votre achat en cliquant sur votre porte-monnaie fictif et y déduire la dépense.</p>
+                <img src="application/views/images/money.png" alt="Image du porte-feuille fictif">
+            </article>
+            <hr>
+            <article class="flex-row">
+                <img src="application/views/images/money_pounch.png" alt="Récompense monétaire">
+                <p>Cumuler les tâches accomplies et offrez-vous une petite récompense pour votre dur labeur !</p>
+            </article>
+        </section>
+    </main>
+</body>

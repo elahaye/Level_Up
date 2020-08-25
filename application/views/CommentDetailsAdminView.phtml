@@ -1,26 +1,29 @@
-<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderAdminView.phtml'); ?>
 
-<main id='listComments' class="tableAdmin">
+    <main id='listComments' class="tableAdmin">
 
-    <h2>Commentaires de "<?= $this->article['title'] ?>"</h2>
+        <h2>Commentaires de "<?= $this->article['title'] ?>"</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Commentaire</th>
-                <th>Auteur</th>
-                <th>Date</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for ($i = 0; $i < count($this->allComments); $i++) : ?>
+        <table>
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars($this->allComments[$i]['content']) ?></td>
-                    <td><?= htmlspecialchars($this->allComments[$i]['author']) ?></td>
-                    <td><?= $this->allComments[$i]['date'] ?></td>
-                    <td> <a class='delete-comment' href="deleteComment&deleteId=<?= $this->allComments[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a></td>
+                    <th>Commentaire</th>
+                    <th>Auteur</th>
+                    <th>Date</th>
+                    <th></th>
                 </tr>
-            <?php endfor ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($this->allComments); $i++) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($this->allComments[$i]['content']) ?></td>
+                        <td><?= htmlspecialchars($this->allComments[$i]['author']) ?></td>
+                        <td><?= $this->allComments[$i]['date'] ?></td>
+                        <td> <a class='delete-comment' href="deleteComment&deleteId=<?= $this->allComments[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                <?php endfor ?>
+            </tbody>
+        </table>
+    </main>
+</body>

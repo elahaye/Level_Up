@@ -1,33 +1,29 @@
-<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderAdminView.phtml'); ?>
 
-<main id='upsertCategory'>
-
-    <?php if (isset($_GET['id'])) : ?>
-        <h2> Modifer votre catégorie</h2>
-    <?php else : ?>
-        <h2>Ajouter un catégorie</h2>
-    <?php endif ?>
-
-    <form method='POST' action='upsertCategory&editId=<?= $this->categoryId ?>'>
-
-        <fieldset>
-
-            <ul id="formFields">
-                <li>
-                    <label for='nameCategory'>Nom</label>
-                    <input type="text" id='nameCategory' name='nameCategory' value='<?= htmlspecialchars($this->name) ?>'>
-                </li>
-            </ul>
-
-        </fieldset>
-
+    <main id='upsertCategory'>
         <?php if (isset($_GET['id'])) : ?>
-            <button type="submit" class="submit">Modifer votre catégorie</button>
+            <h2> Modifer votre catégorie</h2>
         <?php else : ?>
-            <button type="submit" class="submit">Créer une catégorie</button>
-            <button type="reset" class="erase">Effacer les informations</button>
+            <h2>Ajouter un catégorie</h2>
         <?php endif ?>
 
-    </form>
+        <form method='POST' action='upsertCategory&editId=<?= $this->categoryId ?>'>
+            <fieldset>
+                <ul id="formFields">
+                    <li>
+                        <label for='nameCategory'>Nom</label>
+                        <input type="text" id='nameCategory' name='nameCategory' value='<?= htmlspecialchars($this->name) ?>'>
+                    </li>
+                </ul>
+            </fieldset>
 
-</main>
+            <?php if (isset($_GET['id'])) : ?>
+                <button type="submit" class="submit">Modifer votre catégorie</button>
+            <?php else : ?>
+                <button type="submit" class="submit">Créer une catégorie</button>
+                <button type="reset" class="erase">Effacer les informations</button>
+            <?php endif ?>
+        </form>
+    </main>
+</body>

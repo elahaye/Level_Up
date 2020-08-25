@@ -1,39 +1,38 @@
-<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderAdminView.phtml'); ?>
 
-<main id="listUsers" class="tableAdmin">
-
-    <h2> Liste des utilisateurs </h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th> Pseudonyme </th>
-                <th> Mail </th>
-                <th> Status </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for ($i = 0; $i < count($this->displayAllUsers); $i++) : ?>
+    <main id="listUsers" class="tableAdmin">
+        <h2> Liste des utilisateurs </h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars($this->displayAllUsers[$i]['nickname']) ?></td>
-                    <td><?= htmlspecialchars($this->displayAllUsers[$i]['mail']) ?></td>
-                    <td><?= $this->displayAllUsers[$i]['status'] ?></td>
-                    <td><i class="fas fa-edit change-status"></i>
-                        <a href="deleteUser&id=<?= $this->displayAllUsers[$i]['id'] ?>"><i class="fas fa-trash-alt delete-user"></i></a>
-                        <form class="form-user notshow" method="POST" action="editStatusUser&id=<?= $this->displayAllUsers[$i]['id'] ?>">
-                            <label for='statusUser'>Choisissez le statut de cet utilisateur :</label>
-                            <select name='statusUser'>
-                                <option value='user'>Utilisateur de base</option>
-                                <option value='author'>Auteur</option>
-                                <option value='admin'>Administrateur</option>
-                            </select>
-                            <button type="submit">Changer le statut</button>
-                        </form>
-                    </td>
+                    <th> Pseudonyme </th>
+                    <th> Mail </th>
+                    <th> Status </th>
+                    <th></th>
                 </tr>
-            <?php endfor ?>
-        </tbody>
-    </table>
-
-</main>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($this->displayAllUsers); $i++) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($this->displayAllUsers[$i]['nickname']) ?></td>
+                        <td><?= htmlspecialchars($this->displayAllUsers[$i]['mail']) ?></td>
+                        <td><?= $this->displayAllUsers[$i]['status'] ?></td>
+                        <td><i class="fas fa-edit change-status"></i>
+                            <a href="deleteUser&id=<?= $this->displayAllUsers[$i]['id'] ?>"><i class="fas fa-trash-alt delete-user"></i></a>
+                            <form class="form-user notshow" method="POST" action="editStatusUser&id=<?= $this->displayAllUsers[$i]['id'] ?>">
+                                <label for='statusUser'>Choisissez le statut de cet utilisateur :</label>
+                                <select name='statusUser'>
+                                    <option value='user'>Utilisateur de base</option>
+                                    <option value='author'>Auteur</option>
+                                    <option value='admin'>Administrateur</option>
+                                </select>
+                                <button type="submit">Changer le statut</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endfor ?>
+            </tbody>
+        </table>
+    </main>
+</body>

@@ -1,13 +1,10 @@
 <body>
-
     <?php include_once('application/views/HeaderUserView.phtml') ?>
 
     <main>
-
         <h2> Connexion </h2>
 
         <form method="POST" action="connexion">
-
             <?php if (!empty($this->errors)) : ?>
                 <?php foreach ($this->errors as $error) : ?>
                     <p class="error"> <?= $error; ?> </p>
@@ -29,11 +26,8 @@
                 </ul>
 
             </fieldset>
-
             <button type="submit" id="connexion">Connexion</button>
-
         </form>
 
     </main>
-
 </body>

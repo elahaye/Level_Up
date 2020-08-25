@@ -1,104 +1,105 @@
-<?php include_once('application/views/HeaderUserView.phtml'); ?>
+<body>
 
-<main id="editUser">
+    <?php include_once('application/views/HeaderUserView.phtml'); ?>
 
-    <h2>Modification de votre profil</h2>
+    <main id="editUser">
 
-    <form id="register" method="POST" action="editUser&updateUser">
+        <h2>Modification de votre profil</h2>
 
-        <?php if (!empty($this->errors)) : ?>
-            <?php foreach ($this->errors as $error) : ?>
-                <p class="error"> <?= $error; ?> </p>
-            <?php endforeach; ?>
-        <?php endif; ?>
+        <form id="register" method="POST" action="editUser&updateUser">
 
-        <fieldset>
-            <ul id="formFields">
-                <li>
-                    <label for="firstname"> Votre prénom : </label>
-                    <input type="text" name="firstname" id="firstname" value="<?= htmlspecialchars($_SESSION['user']['firstname']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="lastname"> Votre nom : </label>
-                    <input type="text" name="lastname" id="lastname" value="<?= htmlspecialchars($_SESSION['user']['lastname']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="nickname"> Votre pseudonyme : </label>
-                    <input type="text" name="nickname" id="nickname" value="<?= htmlspecialchars($_SESSION['user']['nickname']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="phone"> Votre numéro de téléphone : </label>
-                    <input type="tel" name="phone" id="phone" value="<?= htmlspecialchars($_SESSION['user']['phone']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="dateOfBirth"> Votre date de naissance : </label>
-                    <select name="birthDay" id="birthDay">
-                        <?php for ($i = 1; $i <= 31; $i++) {
-                            if ($i == $this->birthday[2]) {
-                                $this->selected = 'selected';
-                            }
-                            if ($i >= 1 && $i <= 9) {
-                                echo "<option value='0" . $i . "'" . $this->selected . ">0" . $i . "</option>";
-                            } else {
-                                echo "<option value='" . $i . "'" . $this->selected . ">" . $i . "</option>";
-                            }
-                            $this->selected = '';
-                        } ?>
-                    </select>
-                    <select name="birthMonth" id="birthMonth">
-                        <?php for ($i = 1; $i <= 12; $i++) {
-                            if ($i == $this->birthday[2]) {
-                                $this->selected = 'selected';
-                            }
-                            if ($i >= 1 && $i <= 9) {
-                                echo "<option value='0" . $i . "'" . $this->selected . ">0" . $i . "</option>";
-                            } else {
-                                echo "<option value='" . $i . "'" . $this->selected . ">" . $i . "</option>";
-                            }
-                            $this->selected = '';
-                        } ?>
-                    </select>
-                    <select name="birthYear" id="birthYear">
-                        <?php for ($i = 1900; $i <= 2020; $i++) {
-                            if ($i == $this->birthday[0]) {
-                                $this->selected = 'selected';
-                            }
-                            echo "<option value='" . $i . "' " . $this->selected . ">" . $i . "</option>";
-                            $this->selected = '';
-                        } ?>
-                    </select>
-                </li>
-                <li>
-                    <label for="address"> Adresse : </label>
-                    <textarea name="address" id="address" rows="7" cols="30"><?= htmlspecialchars($_SESSION['user']['address']) ?></textarea>
-                    <p></p>
-                </li>
-                <li>
-                    <label for="postCode"> Code Postal : </label>
-                    <input type="text" name="postCode" id="postCode" value="<?= htmlspecialchars($_SESSION['user']['postcode']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="city"> Ville :</label>
-                    <input type="text" name="city" id="city" value="<?= htmlspecialchars($_SESSION['user']['city']) ?>">
-                    <p></p>
-                </li>
-                <li>
-                    <label for="mail"> Votre mail : </label>
-                    <input type="email" name="mail" id="mail" value=" <?= htmlspecialchars($_SESSION['user']['mail']) ?>">
-                    <p></p>
-                </li>
-            </ul>
-        </fieldset>
+            <?php if (!empty($this->errors)) : ?>
+                <?php foreach ($this->errors as $error) : ?>
+                    <p class="error"> <?= $error; ?> </p>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
-        <button type="submit" class="submit">Modifier votre profil</button>
-        <button type="reset" class="erase">Effacer les informations</button>
+            <fieldset>
+                <ul id="formFields">
+                    <li>
+                        <label for="firstname"> Votre prénom : </label>
+                        <input type="text" name="firstname" id="firstname" value="<?= htmlspecialchars($_SESSION['user']['firstname']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="lastname"> Votre nom : </label>
+                        <input type="text" name="lastname" id="lastname" value="<?= htmlspecialchars($_SESSION['user']['lastname']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="nickname"> Votre pseudonyme : </label>
+                        <input type="text" name="nickname" id="nickname" value="<?= htmlspecialchars($_SESSION['user']['nickname']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="phone"> Votre numéro de téléphone : </label>
+                        <input type="tel" name="phone" id="phone" value="<?= htmlspecialchars($_SESSION['user']['phone']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="dateOfBirth"> Votre date de naissance : </label>
+                        <select name="birthDay" id="birthDay">
+                            <?php for ($i = 1; $i <= 31; $i++) {
+                                if ($i == $this->birthday[2]) {
+                                    $this->selected = 'selected';
+                                }
+                                if ($i >= 1 && $i <= 9) {
+                                    echo "<option value='0" . $i . "'" . $this->selected . ">0" . $i . "</option>";
+                                } else {
+                                    echo "<option value='" . $i . "'" . $this->selected . ">" . $i . "</option>";
+                                }
+                                $this->selected = '';
+                            } ?>
+                        </select>
+                        <select name="birthMonth" id="birthMonth">
+                            <?php for ($i = 1; $i <= 12; $i++) {
+                                if ($i == $this->birthday[2]) {
+                                    $this->selected = 'selected';
+                                }
+                                if ($i >= 1 && $i <= 9) {
+                                    echo "<option value='0" . $i . "'" . $this->selected . ">0" . $i . "</option>";
+                                } else {
+                                    echo "<option value='" . $i . "'" . $this->selected . ">" . $i . "</option>";
+                                }
+                                $this->selected = '';
+                            } ?>
+                        </select>
+                        <select name="birthYear" id="birthYear">
+                            <?php for ($i = 1900; $i <= 2020; $i++) {
+                                if ($i == $this->birthday[0]) {
+                                    $this->selected = 'selected';
+                                }
+                                echo "<option value='" . $i . "' " . $this->selected . ">" . $i . "</option>";
+                                $this->selected = '';
+                            } ?>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="address"> Adresse : </label>
+                        <textarea name="address" id="address" rows="7" cols="30"><?= htmlspecialchars($_SESSION['user']['address']) ?></textarea>
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="postCode"> Code Postal : </label>
+                        <input type="text" name="postCode" id="postCode" value="<?= htmlspecialchars($_SESSION['user']['postcode']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="city"> Ville :</label>
+                        <input type="text" name="city" id="city" value="<?= htmlspecialchars($_SESSION['user']['city']) ?>">
+                        <p></p>
+                    </li>
+                    <li>
+                        <label for="mail"> Votre mail : </label>
+                        <input type="email" name="mail" id="mail" value=" <?= htmlspecialchars($_SESSION['user']['mail']) ?>">
+                        <p></p>
+                    </li>
+                </ul>
+            </fieldset>
 
-    </form>
+            <button type="submit" class="submit">Modifier votre profil</button>
+            <button type="reset" class="erase">Effacer les informations</button>
 
-
-</main>
+        </form>
+    </main>
+</body>

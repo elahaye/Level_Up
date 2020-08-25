@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // AJAX                                                                                //
   /////////////////////////////////////////////////////////////////////////////////////////
 
-  // Change date when you click on the calender
+  // Change the date when you click on the calendar
   function changeDate(date) {
     //XMLHttpRequest
     var xhttp = new XMLHttpRequest();
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<p class="notshow">' +
                 waitingTasks[i].content +
                 "</p>" +
-                '<ul class="notshow flex-row">' +
+                '<ul class="notshow flex-row flex-center">' +
                 '<li> <a href="deleteTask&id=' +
                 waitingTasks[i].id +
                 '"><i class="fas fa-trash-alt"></i></a></li>' +
@@ -240,9 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // MAIN CODE                                                                           //
   /////////////////////////////////////////////////////////////////////////////////////////
 
-  changeDate(date);
-  listenerTask(importantTask, importantContent, importantOptions);
-  listenerEdit(importantEditButton);
+  if (waitingSection) {
+    changeDate(date);
+    listenerTask(importantTask, importantContent, importantOptions);
+    listenerEdit(importantEditButton);
+  }
 
   if (budgetSection) {
     budgetSection.addEventListener("click", function () {

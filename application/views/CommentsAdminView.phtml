@@ -1,22 +1,25 @@
-<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderAdminView.phtml'); ?>
 
-<main id='listComments' class="tableAdmin">
+    <main id='listComments' class="tableAdmin">
 
-    <h2>Liste des commentaires</h2>
+        <h2>Liste des commentaires</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Article</th>
-                <th>Nombre de commentaires</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
+        <table>
+            <thead>
                 <tr>
-                    <td><a href="detailsComment&id=<?= $this->showOwnArticles[$i]['id'] ?>"><?= $this->showOwnArticles[$i]['title'] ?></a></td>
-                    <td><?= htmlspecialchars($this->showOwnArticles[$i]['comments']) ?></td>
+                    <th>Article</th>
+                    <th>Nombre de commentaires</th>
                 </tr>
-            <?php endfor ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
+                    <tr>
+                        <td><a href="detailsComment&id=<?= $this->showOwnArticles[$i]['id'] ?>"><?= $this->showOwnArticles[$i]['title'] ?></a></td>
+                        <td><?= htmlspecialchars($this->showOwnArticles[$i]['comments']) ?></td>
+                    </tr>
+                <?php endfor ?>
+            </tbody>
+        </table>
+    </main>
+</body>

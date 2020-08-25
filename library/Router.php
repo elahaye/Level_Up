@@ -34,10 +34,6 @@ class Router
      */
     public static function redirectTo(string $url): void
     {
-        // if (substr(self::$url, 0, 1) !== '/') {
-        //     self::$url = "/$url";
-        // }
-
         header('Location:' . $url);
         exit();
     }
@@ -45,7 +41,7 @@ class Router
 
 // Home Page
 Router::set('home', function () {
-    $controller = new HomeController();
+    $controller = new ArticleController();
     $controller->createView('HomeView');
 });
 
@@ -116,7 +112,7 @@ Router::set('addComment', function () {
 
 // Contact Page
 Router::set('contact', function () {
-    $controller = new UsersController();
+    $controller = new ArticleController();
     $controller->createView('ContactView');
 });
 

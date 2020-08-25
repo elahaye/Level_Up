@@ -54,6 +54,10 @@ main:not(#home) {
   flex-direction: column;
   justify-content: space-between;
 }
+.flex-center {
+  justify-content: center;
+}
+
 .br {
   display: block;
 }
@@ -172,11 +176,11 @@ header nav a:not(:last-child) {
   background-image: url("../images/marble.jpg");
   background-size: cover;
 }
-#home article {
+#home section {
   color: var(--darkColor);
   padding: 60px 20px 0;
 }
-#home article:first-child {
+#home section:first-child {
   background-image: url("../images/sunset.jpg");
   background-position: 50% 40%;
   height: 45vh;
@@ -186,6 +190,10 @@ header nav a:not(:last-child) {
   color: white;
   font-size: 6rem;
   text-transform: none;
+}
+#home h3 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .thumbnail {
   font-size: 2.2rem;
@@ -201,25 +209,42 @@ header nav a:not(:last-child) {
   box-shadow: 2px 2px 5px var(--darkColor);
   transition: 1s;
 }
-.thumbnail p:hover {
+.thumbnail p:hover,
+#home img:hover {
   transform: scale(1.05);
 }
-#home div {
-  margin: 0 auto;
+#home section:nth-child(3),
+#home section:last-child {
+  margin: 50px auto;
   text-align: left;
   width: 80%;
-  padding: 40px;
+  padding: 20px 40px;
   border-radius: 10px;
   border: 1px solid var(--darkColor);
   box-shadow: 1px 1px 10px var(--orangeColor);
-}
-#home article:last-child {
-  padding-bottom: 50px;
-}
-#home article:last-child div {
   background-color: var(--offWhiteColor);
   color: var(--darkColor);
 }
+#home div {
+  margin: 0 10px;
+}
+#home img {
+  max-width: 285px;
+  margin: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--darkColor);
+  box-shadow: 2px 2px 5px var(--darkColor);
+  transition: 1s;
+}
+#home article:first-of-type img {
+  max-width: 500px;
+}
+#home section:last-child p {
+  font-size: 2rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 #home .fas {
   font-size: 6rem;
   margin-top: 10px;
@@ -409,6 +434,7 @@ textarea {
 #moneyDownButton {
   border: none;
   color: var(--darkColor);
+  background-color: white;
 }
 
 /* ------------------------------------------------------------
@@ -657,7 +683,7 @@ textarea {
   #home h2 {
     font-size: 4rem;
   }
-  #home article:nth-child(2) {
+  #home section:nth-child(2) {
     flex-direction: column;
     max-width: 415px;
     margin: 0 auto;

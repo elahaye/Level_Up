@@ -1,20 +1,22 @@
-<?php include_once('application/views/HeaderUserView.phtml'); ?>
+<body>
+    <?php include_once('application/views/HeaderUserView.phtml'); ?>
 
-<main id="userDetails">
+    <main id="userDetails">
 
-    <h2>Votre profil</h2>
+        <h2>Votre profil</h2>
 
-    <a href="editUser"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre profil</a>
-    <a href="editPassword"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre mot de passe</a>
+        <a href="editUser"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre profil</a>
+        <a href="editPassword"><i class="fas fa-arrow-alt-circle-right"></i>Modifier votre mot de passe</a>
 
-    <section>
-        <p><span>Nom</span> : <?= htmlspecialchars($_SESSION['user']['lastname']) ?></p>
-        <p><span>Prénom</span> : <?= htmlspecialchars($_SESSION['user']['firstname']) ?></p>
-        <p><span>Pseudonyme</span> : <?= htmlspecialchars($_SESSION['user']['nickname']) ?></p>
-        <p><span>Date de naissance</span> : <?= $this->birthday[2] ?>/<?= $this->birthday[1] ?>/<?= $this->birthday[0] ?></p>
-        <p><span>Téléphone</span> : <?= htmlspecialchars($_SESSION['user']['phone']) ?></p>
-        <p><span>Adresse</span> : <?= htmlspecialchars($_SESSION['user']['address']) ?> <?= htmlspecialchars($_SESSION['user']['postcode']) ?> <?= htmlspecialchars($_SESSION['user']['city']) ?></p>
-        <p><span>Email</span> : <?= htmlspecialchars($_SESSION['user']['mail']) ?></p>
-    </section>
+        <section>
+            <p><span>Nom</span> : <?= htmlspecialchars($_SESSION['user']['lastname']) ?></p>
+            <p><span>Prénom</span> : <?= htmlspecialchars($_SESSION['user']['firstname']) ?></p>
+            <p><span>Pseudonyme</span> : <?= htmlspecialchars($_SESSION['user']['nickname']) ?></p>
+            <p><span>Date de naissance</span> : <?= $this->birthday[2] ?>/<?= $this->birthday[1] ?>/<?= $this->birthday[0] ?></p>
+            <p><span>Téléphone</span> : <?= htmlspecialchars($_SESSION['user']['phone']) ?></p>
+            <p><span>Adresse</span> : <?= htmlspecialchars($_SESSION['user']['address']) ?> <?= htmlspecialchars($_SESSION['user']['postcode']) ?> <?= htmlspecialchars($_SESSION['user']['city']) ?></p>
+            <p><span>Email</span> : <?= htmlspecialchars($_SESSION['user']['mail']) ?></p>
+        </section>
 
-</main>
+    </main>
+</body>

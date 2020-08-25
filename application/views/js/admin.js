@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     menubar: false,
     toolbar:
       "undo redo | bold italic underline | alignleft aligncenter alignright | fontsizeselect | fontselect | forecolor",
+    toolbar_mode: "floating",
+    height: "100vh",
   });
 
   /////////////////////////////////////////////////////////////////////////////////////////

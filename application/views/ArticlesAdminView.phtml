@@ -1,53 +1,56 @@
-<?php include_once('application/views/HeaderAdminView.phtml'); ?>
+<body>
 
-<main id='listArticles' class="tableAdmin">
+    <?php include_once('application/views/HeaderAdminView.phtml'); ?>
 
-    <h2>Liste des articles</h2>
+    <main id='listArticles' class="tableAdmin">
 
-    <h3><a href='upsertArticle'> <i class="fas fa-plus-circle"></i> Créer un nouvel article </a></h3>
+        <h2>Liste des articles</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Catégorie</th>
-                <th>Date de publication</th>
+        <h3><a href='upsertArticle'> <i class="fas fa-plus-circle"></i> Créer un nouvel article </a></h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Date de publication</th>
+                    <?php if ($_SESSION['user']['status'] == 'admin') : ?>
+                        <th>Auteur</th>
+                    <?php endif ?>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php if ($_SESSION['user']['status'] == 'admin') : ?>
-                    <th>Auteur</th>
+                    <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
+                        <tr>
+                            <td><?= htmlspecialchars($this->showArticles[$i]['title']) ?></td>
+                            <td><?= htmlspecialchars($this->showArticles[$i]['category']) ?></td>
+                            <td><?= $this->showArticles[$i]['date'] ?></td>
+                            <td><?= htmlspecialchars($this->showArticles[$i]['author']) ?></td>
+                            <td>
+                                <?php if ($_SESSION['user']['nickname'] == $this->showArticles[$i]['author'] || $_SESSION['user']['id'] == $this->showArticles[$i]['author']) : ?>
+                                    <a href="upsertArticle&id=<?= $this->showArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
+                                <?php endif ?>
+                                <a class='delete-article' href="deleteArticle&deleteId=<?= $this->showArticles[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    <?php endfor ?>
+                <?php elseif ($_SESSION['user']['status'] == 'author') : ?>
+                    <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
+                        <tr>
+                            <td><?= htmlspecialchars($this->showOwnArticles[$i]['title']) ?></td>
+                            <td><?= htmlspecialchars($this->showOwnArticles[$i]['category']) ?></td>
+                            <td><?= $this->showOwnArticles[$i]['date'] ?></td>
+                            <td>
+                                <a href="upsertArticle&id=<?= $this->showOwnArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
+                                <a class='delete-article' href="deleteArticle&deleteId=<?= $this->showOwnArticles[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    <?php endfor ?>
                 <?php endif ?>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($_SESSION['user']['status'] == 'admin') : ?>
-                <?php for ($i = 0; $i < count($this->showArticles); $i++) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($this->showArticles[$i]['title']) ?></td>
-                        <td><?= htmlspecialchars($this->showArticles[$i]['category']) ?></td>
-                        <td><?= $this->showArticles[$i]['date'] ?></td>
-                        <td><?= htmlspecialchars($this->showArticles[$i]['author']) ?></td>
-                        <td>
-                            <?php if ($_SESSION['user']['nickname'] == $this->showArticles[$i]['author'] || $_SESSION['user']['id'] == $this->showArticles[$i]['author']) : ?>
-                                <a href="upsertArticle&id=<?= $this->showArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
-                            <?php endif ?>
-                            <a class='delete-article' href="deleteArticle&deleteId=<?= $this->showArticles[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                <?php endfor ?>
-            <?php elseif ($_SESSION['user']['status'] == 'author') : ?>
-                <?php for ($i = 0; $i < count($this->showOwnArticles); $i++) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($this->showOwnArticles[$i]['title']) ?></td>
-                        <td><?= htmlspecialchars($this->showOwnArticles[$i]['category']) ?></td>
-                        <td><?= $this->showOwnArticles[$i]['date'] ?></td>
-                        <td>
-                            <a href="upsertArticle&id=<?= $this->showOwnArticles[$i]['id'] ?>"><i class="fas fa-edit"></i></a>
-                            <a class='delete-article' href="deleteArticle&deleteId=<?= $this->showOwnArticles[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                <?php endfor ?>
-            <?php endif ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</main>
+    </main>
+</body>

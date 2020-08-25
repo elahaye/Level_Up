@@ -28,7 +28,7 @@
                                         (le <?= date("d/m/Y", strtotime(htmlspecialchars($this->importantTasks[$i]['date']))) ?>)
                                     </h4>
                                     <p class="notshow"> <?= htmlspecialchars($this->importantTasks[$i]['content']) ?> </p>
-                                    <ul class="notshow flex-row">
+                                    <ul class="notshow flex-row flex-center">
                                         <li> <a href="deleteTask&id=<?= $this->importantTasks[$i]['id'] ?>"><i class="fas fa-trash-alt"></i></a></li>
                                         <li data-id="<?= $this->importantTasks[$i]['id'] ?>"><i class="fas fa-edit"></i></li>
                                     </ul>
