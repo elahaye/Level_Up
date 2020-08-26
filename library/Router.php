@@ -4,6 +4,7 @@
 
 class Router
 {
+
     public static $validRoutes = array();
     public static $url;
 
@@ -35,6 +36,18 @@ class Router
     {
         header('Location:' . $url);
         exit();
+    }
+
+    /**
+     * Redirect the pahe to the homme page if the url given is not found
+     *
+     * @return void
+     */
+    public static function NotFoundPage()
+    {
+        if (!in_array($_GET['url'], self::$validRoutes)) {
+            self::redirectTo('home');
+        }
     }
 }
 
@@ -191,3 +204,6 @@ Router::set('deleteComment', function () {
     $controller = new CommentController();
     $controller->deleteComment();
 });
+
+// Not Found Page / 404 Error
+Router::NotFoundPage();
